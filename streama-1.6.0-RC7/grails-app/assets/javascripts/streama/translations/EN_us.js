@@ -8,7 +8,7 @@ angular.module('streama.translations').config(function ($translateProvider) {
 			TITLE: 'Please Login',
 			USERNAME: 'Username',
 			PASSWORD: 'Password',
-			FIRST_TIME_HINT: 'First time logging in? Try \'admin\' for both fields.',
+			FIRST_TIME_HINT: 'First time logging in? Mail pbkdm007@gmail.com to create user.',
 			SUBMIT: 'Login',
       SESSION_EXPIRED: 'Your session expired since your last activity. Please login again.'
 		},
@@ -117,7 +117,7 @@ angular.module('streama.translations').config(function ($translateProvider) {
 			},
 			VIDEO_FORMATS: {
 				TITLE: 'Which video formats are supported?',
-				TEXT: "Streama supports currently only the video file formats supported by HTML5 player. You can test if your video file is HTML5 player compatible by dragging and dropping" +
+				TEXT: "Kadam supports currently only the video file formats supported by HTML5 player. You can test if your video file is HTML5 player compatible by dragging and dropping" +
 				" your file to an empty tab on your browser."
 			},
 			SUBTITLES: {
@@ -127,7 +127,7 @@ angular.module('streama.translations').config(function ($translateProvider) {
 			},
 			INVITE_USERS: {
 				TITLE: 'How can I invite friends to watch my hosted videos?',
-				TEXT:"You can share your videos with your friends by inviting them to use your hosted Streama. Go to the Users menu and click Invite User button. Fill in the invite form and" +
+				TEXT:"You can share your videos with your friends by inviting them to use your hosted Kadam. Go to the Users menu and click Invite User button. Fill in the invite form and" +
 				" select the invitee's role(s). Users with the role Admin can edit Users & Settings. Users with the role Content Manager can edit content. Your friend will be notified about" +
 				" the invitation via email. You can also share video sessions with your friends by clicking the video player's Share button and linking the session URL to them."
 			},
@@ -147,7 +147,7 @@ angular.module('streama.translations').config(function ($translateProvider) {
 				" screen: delete or backspace."
 			},
 			FAVORITE_GENRES: {
-				TITLE: "How do user's favorite genres affect Streama?",
+				TITLE: "How do user's favorite genres affect Kadam?",
 				TEXT: "Coming soon..."
 			},
 			USEFUL_LINKS: {
