@@ -202,8 +202,8 @@
         <table>
           <tr>
             <td>
-              <h1>New Content on Streama</h1>
-              <p style="font-size: 16px;">Recently, the following content was added to Streama</p>
+              <h1>New Content on Kadam</h1>
+              <p style="font-size: 16px;">Recently, the following content was added to Kadam</p>
 
               <g:if test="${notificationQueues.findAll{it.movie}}">
                 <h3>New Movies</h3>
@@ -245,7 +245,7 @@
               </g:if>
 
 
-              <a href="${streama.Settings.findBySettingsKey('Base URL')?.value}/" class="btn-primary" style="font-size: 20px;">Visit Streama now!</a>
+              <a href="${streama.Settings.findBySettingsKey('Base URL')?.value}/" class="btn-primary" style="font-size: 20px;">Visit Kadam now!</a>
             </td>
           </tr>
         </table>

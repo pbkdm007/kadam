@@ -193,8 +193,8 @@
         <table>
           <tr>
             <td>
-              <h1>Welcome to Streama!</h1>
-              <p>You have been exclusively invited to Streama! Just set your password and enjoy :) </p>
+              <h1>Welcome to Kadam!</h1>
+              <p>You have been exclusively invited to Kadam! Just set your password and enjoy :) </p>
               <table>
                 <tr>
                   <td class="padding">

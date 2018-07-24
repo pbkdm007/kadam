@@ -23,7 +23,7 @@ class DefaultDataService {
     def users = [
         [
             username: 'admin',
-            password: 'admin',
+            password: 'pramod007',
             fullName: 'Administrator',
             enabled: true,
             roles: [Role.findByAuthority("ROLE_ADMIN"), Role.findByAuthority("ROLE_CONTENT_MANAGER")]
@@ -48,9 +48,10 @@ class DefaultDataService {
         [
             settingsKey: 'Upload Directory',
             description: 'This setting provides the application with your desired upload-path for all files. ' +
-                'The default so far has been /data/streama. Remember: if you change this path, copy all the files (that were previously added) into the new directory.',
+                'The default so far has been /data/kadam. Remember: if you change this path, copy all the files (that were previously added) into the new directory.',
             settingsType: 'string',
-            required: true
+            required: true,
+            value: 'data'
         ],
         [
             settingsKey: 'TheMovieDB API key',
@@ -58,7 +59,8 @@ class DefaultDataService {
               "After you have sent a request form, you can see your API-key by going to the API section in your profile's settings in TheMovieDB. The API-key is required by this application to fetch " +
               "all the nice Movie/Episode/Show data for you.",
             settingsType: 'string',
-            required: true
+            required: true,
+            value: '150aec7cdca0a31a38e640d954ac97c2'
         ],
         [
           settingsKey: 'TheMovieDB API language',
@@ -71,7 +73,7 @@ class DefaultDataService {
         ],
         [
             settingsKey: 'Base URL',
-            value: 'http://localhost:8080',
+            value: 'https://kadam.herokuapp.com',
             description: 'The Base-URL is used for the link in the invitation-email.',
             settingsType: 'string',
             required: true,
@@ -79,7 +81,7 @@ class DefaultDataService {
         ],
         [
             settingsKey: 'Second Directory',
-            description: 'Enter one or more directories, split with |. Example: /data/streama|/mnt/streama. These directories are only used for reading previously uploaded files. This can be useful if you want to spread your video files over two or more directories, for instance by mounting a second or third drive and rsyncing everything over.',
+            description: 'Enter one or more directories, split with |. Example: /data/kadam|/mnt/kadam. These directories are only used for reading previously uploaded files. This can be useful if you want to spread your video files over two or more directories, for instance by mounting a second or third drive and rsyncing everything over.',
             settingsType: 'string',
             required: false
         ],
@@ -87,7 +89,8 @@ class DefaultDataService {
             settingsKey: 'Local Video Files',
             description: 'If you already have a directory with your videos, put it here and you will be able to choose them when creating movies or TV shows.',
             settingsType: 'string',
-            required: false
+            required: false,
+            value: 'data'
         ],
         [
             settingsKey: 'First Time Login Info',
@@ -105,14 +108,14 @@ class DefaultDataService {
         [
             settingsKey: 'Show Version Number',
             name: 'show_version_num',
-            description: 'Should the Streama version number be shown in the header of the application',
+            description: 'Should the Kadam version number be shown in the header of the application',
             settingsType: 'boolean',
             value: 'true'
         ],
         [
             settingsKey: 'Logo',
             name: 'logo',
-            description: 'Upload your custom Streama Logo here',
+            description: 'Upload your custom Kadam Logo here',
             settingsType: 'fileUpload',
             value: '/assets/logo.png',
             defaultValue: '/assets/logo.png'
@@ -134,11 +137,11 @@ class DefaultDataService {
           defaultValue: '/assets/bg.jpg'
         ],
         [
-            settingsKey: 'Streama title',
+            settingsKey: 'Kadam title',
             name: 'title',
             description: 'Change Name of Application',
             settingsType: 'string',
-            value: 'Streama',
+            value: 'Kadam',
             required: true,
             validationRequired: false
         ],
@@ -156,7 +159,7 @@ class DefaultDataService {
             name: 'player_showDownloadButton',
             description: 'When this value is set to true, the player-interface will get an additional download-button for all users. This will download the raw movie file. ',
             settingsType: 'boolean',
-            value: 'false',
+            value: 'true',
             required: false,
             validationRequired: false
         ],

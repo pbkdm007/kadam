@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="layout" content="main"/>
-  <title>Streama</title>
+  <title>Kadam</title>
 </head>
 <body>
 
