@@ -22,8 +22,8 @@ class DefaultDataService {
   def createDefaultUsers(){
     def users = [
         [
-            username: 'admin',
-            password: 'pramod007',
+            username: 'pramod',
+            password: 'pramod',
             fullName: 'Administrator',
             enabled: true,
             roles: [Role.findByAuthority("ROLE_ADMIN"), Role.findByAuthority("ROLE_CONTENT_MANAGER")]
