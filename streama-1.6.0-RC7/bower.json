@@ -1,8 +1,8 @@
 {
-  "name": "Streama",
+  "name": "Kadam",
   "version": "0.1.4",
   "authors": [
-    "dularion <dularion@gmail.com>"
+    "Kadam <pbkdm007@gmail.com>"
   ],
   "description": "It's like Netflix, but self-hosted!",
   "license": "MIT",

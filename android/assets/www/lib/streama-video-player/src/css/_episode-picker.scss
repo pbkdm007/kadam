@@ -1,0 +1,80 @@
+
+.mobile-episode-selector-season-tabs{
+  @include flexbox;
+  padding: 0 1em;
+}
+
+.mobile-episode-selector-season-tab{
+  padding: 4px 4px;
+  font-size: 1.2em;
+  margin-right: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.mobile-episode-selector-outer{
+  overflow: scroll;
+  padding: 1em 1em 1px;
+  @include flexbox;
+  @include flex(1);
+}
+
+.mobile-episode-selector-inner{
+  @include flexbox;
+  width: -moz-min-content;
+  width: -webkit-min-content;
+  width: min-content;
+}
+
+.mobile-episode-box{
+  margin-right: 1em;
+  flex: 0 0 auto;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+
+  .image-wrapper{
+    position: relative;
+  }
+
+  .play-button{
+    font-size: 3em;
+  }
+
+  &.active{
+    border-bottom: 7px solid $primary;
+
+    h3{
+      color: white;
+    }
+    .episode-overview{
+      color: #f0f0f0;
+    }
+  }
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+
+  h3{
+    margin-bottom: 8px;
+    font-size: 1em;
+    margin-top: 8px;
+    color: #afafaf;
+  }
+
+  .episode-duration{
+    float: right;
+    font-weight: 100;
+    color: #afafaf;
+  }
+}
+
+.episode-overview{
+  color: #afafaf;
+  font-size: 1em;
+  margin-top: 0;
+  line-height: 1.4em;
+  overflow-y: scroll;
+}

@@ -1,0 +1,247 @@
+.media-item{
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.media-item-inner{
+  position: relative;
+  overflow: hidden;
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+
+  .media-name{
+    margin: 5px 0 0;
+  }
+
+  .info-icon,
+  .warning-icon{
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    line-height: 1em;
+    font-size: 31px;
+    color: $primary;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  }
+
+  .warning-icon{
+    opacity: 1;
+    color: $danger;
+  }
+
+
+  .play-icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.8em;
+    line-height: 1.8em;
+    text-align: center;
+    color: #b0ddef;
+    font-size: 33px;
+    margin: -.9em;
+    border-radius: 100%;
+    border: 1px solid white;
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.78);
+  }
+
+}
+
+.volume-info{
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  text-shadow: 0 0 15px black;
+}
+
+.media-episode-string{
+  font-size: 14px;
+  font-weight: 100;
+  margin: 0;
+}
+
+.media-title{
+  font-weight: 400;
+  line-height: 1.2em;
+  font-size: 18px;
+  margin: 8px 0 8px;
+}
+
+.media-meta{
+  font-size: 75%;
+  opacity: .8;
+  margin: 4px 0;
+}
+
+.media-description{
+  line-height: 1.3em;
+  font-size: 12px;
+}
+
+
+
+.data-display{
+  opacity: 0.7;
+}
+
+.episode-wrapper{
+  margin-top: 15px;
+  background-color: rgba(0, 0, 0, 0.22);
+  padding: 12px;
+  position: relative;
+
+  &.no-files{
+    opacity: 0.5;
+  }
+
+
+  .upload-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(desaturate(darken($primary, 25%),20%), 0.7);
+    z-index: 9;
+    border: 2px dashed $primary;
+    @include flex-center-all;
+    display: none;
+
+    .hint,
+    .percentage,
+    .processing{
+      text-transform: uppercase;
+      color: white;
+      font-weight: 600;
+      font-size: 27px;
+      text-align: center;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.49);
+
+      .spinner > div{
+        background-color: rgb(255, 255, 255);
+      }
+      .converting{
+        display: block;
+      }
+    }
+  }
+
+  &.dragover-upload,
+  &.uploading{
+    opacity: 1;
+    .upload-overlay{
+      @include flexbox;
+    }
+  }
+
+  .media-title {
+    height: 44px;
+    overflow: hidden;
+  }
+
+  .media-item-inner{
+    max-height: 150px;
+    overflow: hidden;
+  }
+}
+
+
+.button-wrapper{
+  margin-top: 12px;
+}
+
+.season-wrapper{
+  clear: both;
+
+  .season-fold-out-heading{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 300;
+    margin: 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 8px;
+    font-size: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    @include flexbox;
+
+    .season-fold-out{
+      margin-right: 8px;
+      font-size: 14px;
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  .season-fold-out-inner{
+    @include flex(1);
+    margin: -8px 0 -8px -8px;
+    padding: 8px 12px;
+  }
+}
+
+.files-wrapper{
+
+  h4{
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+}
+
+.file-wrapper{
+  .file-name{
+    font-size: 13px;
+    font-weight: 300;
+    word-wrap: break-word;
+  }
+}
+
+
+
+.similar-media{
+  .media-item{
+    width: 180px;
+    position: relative;
+
+    .media-item-inner{
+      height: 270px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .hover-overlay{
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background: rgba(black, .7);
+      @include flex-center-all;
+      @include vendor-property('transition', 'opacity .3s');
+    }
+
+    &:hover{
+      .hover-overlay{
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+.no-episodes-yet{
+  padding: 70px;
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  word-spacing: 10px;
+  opacity: .15;
+}

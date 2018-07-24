@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet">
+    <link href="lib/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet">
+    <link href="lib/toastr/toastr.min.css" rel="stylesheet">
+    <link href="lib/alertify/themes/alertify.core.css" rel="stylesheet">
+    <link href="lib/alertify/themes/alertify.bootstrap3.css" rel="stylesheet">
+    <link href="lib/angularjs-slider/dist/rzslider.css" rel="stylesheet">
+    <link href="lib/streama-video-player/dist/streama-video-player.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/streama.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic.cloud.min.js"></script>
+
+    <script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/lodash/lodash.js"></script>
+    <script src="lib/lodashMixins.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/mousetrap/mousetrap.js"></script>
+    <script src="lib/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="lib/angularjs-slider/dist/rzslider.js"></script>
+    <script src="lib/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="lib/angular-owl-carousel.js"></script>
+    <script src="lib/angular-translate/angular-translate.js"></script>
+    <script src="lib/streama-i18n/dist/streama-i18n.js"></script>
+    <script src="lib/streama-video-player/dist/streama-video-player.js"></script>
+    <script src="lib/toastr/toastr.js"></script>
+    <script src="lib/alertify/alertify.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/streama.js"></script>
+    <script src="js/streama.run.js"></script>
+    <script src="js/streama.routes.js"></script>
+
+    <script src="js/core/core.module.js"></script>
+    <script src="js/core/directives/mediaItem.directive.js"></script>
+    <script src="js/core/directives/mediaContinueWatchingItem.directive.js"></script>
+    <script src="js/core/directives/uisOwlCarousel.directive.js"></script>
+    <script src="js/core/services/api.service.js"></script>
+
+    <script src="js/core/filters/streama.secondsToDateTime.js"></script>
+    <script src="js/core/filters/streama.textDotDotDot.js"></script>
+    <script src="js/core/filters/streama.trustResourceUrl.js"></script>
+
+    <script src="js/setup/setup.module.js"></script>
+    <script src="js/setup/setup.controller.js"></script>
+
+    <script src="js/dash/dash.module.js"></script>
+    <script src="js/dash/dash.controller.js"></script>
+    <script src="js/dash/mediaDetail.controller.js"></script>
+
+    <script src="js/player/player.module.js"></script>
+    <script src="js/player/player.controller.js"></script>
+    <script src="js/player/services/player.service.js"></script>
+    <script src="js/player/services/websocket.service.js"></script>
+
+  </head>
+
+  <body ng-app="streama" class="platform-android platform-cordova platform-webview">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

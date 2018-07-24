@@ -1,0 +1,28 @@
+<div class="mobile-overlay-container mobile-episode-selector-container">
+  <div class="mobile-episode-selector-season-tabs">
+    <div class="mobile-episode-selector-season-tab" ng-repeat="(season, episodes) in options.episodeList">
+      <span>{{'VIDEO.SEASON' | translate}} {{season}}</span>
+    </div>
+  </div>
+
+  <div class="mobile-episode-selector-outer">
+    <div class="mobile-episode-selector-inner">
+      <div class="mobile-episode-box" ng-repeat="episode in options.selectedEpisodes" ng-class="{'active': episode.id == options.currentEpisode.id}">
+        <div class="image-wrapper">
+          <i ng-if="episode.id != options.currentEpisode.id" class="play-button ion-ios-play" ng-click="changeEpisode(episode)"></i>
+          <img ng-if="episode.still_path" ng-src="{{episode.still_path}}"/>
+          <div ng-if="!episode.still_path" class="fallback-image"></div>
+        </div>
+        <h3>
+          <span class="episode-number">{{episode.episode_number}}. </span>
+          <span class="episode-name" ng-click="visible = !visible">{{episode.name}}</span>
+
+          <span ng-if="episode.videoDuration" class="episode-duration">{{episode.videoDuration | videoDurationDisplay}}</span>
+        </h3>
+        <p class="episode-overview">{{episode.overview.length > 250 ? (episode.overview.substring(0, 250) + '...') : episode.overview}}</p>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

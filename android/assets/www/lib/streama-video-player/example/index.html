@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Streama Video Player Demo</title>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-translate/angular-translate.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="../bower_components/mousetrap/mousetrap.js"></script>
+  <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="../bower_components/angularjs-slider/dist/rzslider.min.js"></script>
+  <script src="../bower_components/lodash/lodash.js"></script>
+  <script src="../bower_components/streama-i18n/dist/streama-i18n.min.js"></script>
+  <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../dist/streama-video-player.js"></script>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.css">
+  <link rel="stylesheet" href="../bower_components/angularjs-slider/dist/rzslider.css">
+  <link rel="stylesheet" href="../dist/streama-video-player.css">
+
+  <style>
+    body{
+      background: black;
+    }
+  </style>
+</head>
+<body ng-app="myModule">
+
+
+  <streama-video-player options="$root.videoOptions">
+  </streama-video-player>
+
+
+  <script>
+    angular.module('myModule', ['streama.videoPlayer']).run(function ($rootScope) {
+			$rootScope.videoOptions = {
+				videoSrc: 'http://techslides.com/demos/sample-videos/small.mp4',
+				isExternalLink: true,
+				episodeList: {
+        	1: [
+						{id: 1, name: 'Pilot', season_number: 1, episode_number:1, episodeString: 's01e01', still_path: 'https://image.tmdb.org/t/p/original/ydlY3iPfeOAvu8gVqrxPoMvzNCn.jpg', overview: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', videoDuration: 1320},
+						{id: 2, name: 'The Cat\'s in the Bag', season_number: 1, episode_number:2, episodeString: 's01e02', still_path: 'https://image.tmdb.org/t/p/original/tjDNvbokPLtEnpFyFPyXMOd6Zr1.jpg', overview: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', videoDuration: 1320},
+						{id: 3, name: '...and the Bag\'s in the River', season_number: 1, episode_number:3, episodeString: 's01e03', still_path: 'https://image.tmdb.org/t/p/original/2kBeBlxGqBOdWlKwzAxiwkfU5on.jpg', overview: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', videoDuration: 1320},
+						{id: 3, name: '...and the Bag\'s in the River', season_number: 1, episode_number:3, episodeString: 's01e03', still_path: 'https://image.tmdb.org/t/p/original/2kBeBlxGqBOdWlKwzAxiwkfU5on.jpg', overview: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.', videoDuration: 1320}
+          ]
+        },
+				showEpisodeBrowser: true,
+				currentEpisode : {
+					episode: 1,
+					season: 1,
+					id: 1
+				},
+
+        subtitles: [
+					{"id": 1561, "src": "/example/sub-de.vtt", "subtitleLabel": "Deutsch", "subtitleSrcLang": "de", "contentType": "application/x-subrip"},
+					{"id": 1562, "src": "/example/sub-en.vtt", "subtitleLabel": "English", "subtitleSrcLang": "en", "contentType": "application/x-subrip"}
+        ],
+
+        currentSubtitle: 1562
+      }
+
+		});
+
+
+
+  </script>
+</body>
+</html>

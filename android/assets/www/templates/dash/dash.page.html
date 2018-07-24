@@ -1,0 +1,88 @@
+<ion-view title="Dashboard" class="dash">
+  <ion-nav-title>
+    <img src="img/logo.png" alt="Streama">
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-ios-search" ng-click="$root.toggleSearch()">
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="dashboard">
+
+    <div ng-if="vm.newReleases.length" class="new-releases-slider">
+      <h3>{{'DASHBOARD.NEW_RELEASES' | translate}}</h3>
+
+      <ion-slides options="vm.swiperHighlightOptions" slider="data.sliderHighlights" class="ion-slides-new-releases">
+        <ion-slide-page ng-repeat="item in vm.newReleases">
+          <div class="new-releases-slide">
+            <img class="poster-image" ng-src="https://image.tmdb.org/t/p/w342/{{item.media.poster_path}}" class="pull-left">
+            <div class="image-background" style="background-image: url('https://image.tmdb.org/t/p/w1280/{{item.media.backdrop_path}}')">
+              <i class="info-icon ion-ios-information" ui-sref="main.mediaDetail({mediaId: item.media.id, mediaType: item.media.mediaType})"></i>
+              <div class="new-release-footer">
+                <a class="play-icon ion-ios-play" ui-sref="player({videoId: item.videoToPlayId})" ui-sref-opts="{reload: true, notify: true}"></a>
+                <div class="new-releases-description">
+                  <h3>
+                    {{item.media.title || item.media.name}}
+                    <span ng-if="item.media.release_date">({{item.media.release_date.substring(0,4)}})</span>
+                  </h3>
+                  <h4>{{item.description}}</h4>
+                  <p class="text-overview">{{item.media.overview | streamaTextDotDotDot:100}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-slide-page>
+      </ion-slides>
+    </div>
+
+
+    <h3>{{'DASHBOARD.CONTINUE_WATCHING' | translate}}</h3>
+
+    <ion-slides options="vm.swiperOptions" slider="data.sliderContinueWatching" class="ion-slides-continue-watching">
+      <ion-slide-page ng-repeat="item in vm.continueWatchingList">
+        <streama-media-continue-watching-item item="item"></streama-media-continue-watching-item>
+      </ion-slide-page>
+    </ion-slides>
+
+    <!--<div owl-carousel="vm.continueWatchingList" owl-options="vm.carouselOptions">-->
+      <!--<streama-media-continue-watching-item item="item"></streama-media-continue-watching-item>-->
+    <!--</div>-->
+
+   <div ng-show="vm.recommendations.length">
+     <h3>{{'DASHBOARD.RECOMMENDATIONS' | translate}}</h3>
+
+     <ion-slides options="vm.swiperOptions" slider="data.sliderRecommendations" class="ion-slides-poster">
+       <ion-slide-page ng-repeat="item in vm.recommendations">
+         <streama-media-item item="item"></streama-media-item>
+       </ion-slide-page>
+     </ion-slides>
+   </div>
+
+    <h3>{{'DASHBOARD.DISCOVER_SHOWS' | translate}}</h3>
+
+    <ion-slides options="vm.swiperOptions" slider="data.sliderTv" class="ion-slides-poster">
+      <ion-slide-page ng-repeat="item in vm.shows">
+        <streama-media-item item="item"></streama-media-item>
+      </ion-slide-page>
+    </ion-slides>
+
+
+    <h3>{{'DASHBOARD.DISCOVER_MOVIES' | translate}}</h3>
+
+    <ion-slides options="vm.swiperOptions" slider="data.sliderMovies" class="ion-slides-poster">
+      <ion-slide-page ng-repeat="item in vm.movies">
+        <streama-media-item item="item"></streama-media-item>
+      </ion-slide-page>
+    </ion-slides>
+
+
+    <h3>{{'DASHBOARD.DISCOVER_OTHER_VIDEOS' | translate}}</h3>
+
+    <ion-slides options="vm.swiperOptions" slider="data.sliderGenericVideos" class="ion-slides-poster">
+      <ion-slide-page ng-repeat="item in vm.genericVideos">
+        <streama-media-item item="item"></streama-media-item>
+      </ion-slide-page>
+    </ion-slides>
+
+  </ion-content>
+</ion-view>

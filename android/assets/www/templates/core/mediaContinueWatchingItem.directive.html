@@ -1,0 +1,30 @@
+<div class="media-item media-continue-watching-item" ng-click="playMedia($event, item)">
+  <div class="media-item-inner">
+
+    <img ng-if="item.video.backdrop_path" ng-src="https://image.tmdb.org/t/p/w1280/{{item.video.backdrop_path}}"/>
+    <img ng-if="!item.video.backdrop_path" ng-src="img/poster-not-found.png"/>
+
+    <a class="play-icon ion-ios-play" ui-sref="player({videoId: item.video.id})" ui-sref-opts="{reload: true, notify: true}"></a>
+  </div>
+
+  <div class="media-progress-wrapper">
+
+    <div class="row">
+      <div class="col">
+        <div class="progress-info" ng-show="item.video.isEpisode">
+          <span ng-bind="::item.video.episodeString"></span> - <span ng-bind="::item.video.title"></span>
+        </div>
+        <div class="progress-info" ng-show="!item.video.isEpisode" ng-bind="::item.video.title"></div>
+
+        <div class="progress-time"><span ng-bind="::(item.currentPlayTime | streamaSecondsToDateTime | date:'mm:ss')"></span> min</div>
+
+        <div class="media-progress" ng-if="item.runtime">
+          <div class="progress-inner" style="width: {{item.currentPlayTime / item.runtime * 100}}%;"></div>
+        </div>
+      </div>
+      <div class="continue-watching-info" ui-sref="main.mediaDetail({mediaId: item.video.id, mediaType: item.video.mediaType})">
+        <i class="ion-ios-information-outline" ></i>
+      </div>
+    </div>
+  </div>
+</div>
