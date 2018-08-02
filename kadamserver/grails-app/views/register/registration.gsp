@@ -63,7 +63,7 @@
           
           <span>
 
-            <button class="btn btn-primary pull-right">{{'LOGIN.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
+            <button class="btn btn-primary pull-right">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
         </form>
       </div>
     </div>
