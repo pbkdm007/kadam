@@ -35,7 +35,7 @@
 			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <form action='${postUrl}' method='POST' id='loginForm' class='cssform form-horizontal' autocomplete='off'>
+        <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
 
           <div class="form-group">
             <div class="col-lg-12">
@@ -48,13 +48,20 @@
               <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}">
             </div>
           </div>
+          
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="password" name='password' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="text" name='fullname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}">
+            </div>
+          </div>
+          
           <span>
-            <g:if test="${streama.Settings.findBySettingsKey('First Time Login Info')?.value == 'true'}">
-              Please login with your username and password. <br />
-        	  Don't have an account?
-        	  <g:link controller="user" action="register">Sign up now!</g:link>
-            </g:if>
-            <input style="display: none;" type='checkbox' name='remember_me' id='remember_me' checked='checked'/>
 
             <button class="btn btn-primary pull-right">{{'LOGIN.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
         </form>
@@ -72,7 +79,7 @@
   <script type='text/javascript'>
     <!--
     (function() {
-      document.forms['loginForm'].elements['username'].focus();
+      document.forms['registrationForm'].elements['username'].focus();
     })();
 
     angular.module('streama.translations').controller('authController', function ($translate) {

@@ -12,6 +12,9 @@ angular.module('streama.translations').config(function ($translateProvider) {
 			SUBMIT: 'Login',
       SESSION_EXPIRED: 'Your session expired since your last activity. Please login again.'
 		},
+		LOGIN: {
+			REGISTER: 'Register'
+		},
 		DASHBOARD: {
 			TITLE: 'Dashboard',
 			RECOMMENDATIONS: 'Recommendations for you',

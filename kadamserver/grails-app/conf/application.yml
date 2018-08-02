@@ -121,6 +121,19 @@ grails:
             /dash/**: {}
             /player/**: {}
 
+---
+grails:
+     mail:
+          host: "smtp.gmail.com"
+          port: 465
+          username: "pbkdm007@gmail.com"
+          password: "pbkbkkpbksbk@007"
+          props:
+              mail.smtp.auth: "true"
+              mail.smtp.socketFactory.port: "465"
+              mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
+              mail.smtp.socketFactory.fallback: "false"
+
 streama:
   regex:
     movies: ^(?<Name>.*)[._ ]\(\d{4}\).*
