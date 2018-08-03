@@ -75,7 +75,7 @@ class RegisterController {
 
     String postUrl = request.contextPath + 'register/register'
     
-	render file: 'modal--create-user.tpl.htm', contentType:"text/html", encoding:"UTF-8"
+	render view: 'registration'
   }
 
   /** The redirect action for Ajax requests. */

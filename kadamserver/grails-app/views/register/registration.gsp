@@ -35,33 +35,19 @@
 			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
+        <div class="modal-body">
 
-          <!--<div class="form-group">
-            <div class="col-lg-12">
-              <input type="text" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}">
-            </div>
-          </div>
+  <form class="form-horizontal">
+    <legend>
+      Create User
+      <div class="spinner" ng-show="loading">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </legend>
 
-          <div class="form-group">
-            <div class="col-lg-12">
-              <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <div class="col-lg-12">
-              <input type="password" name='password' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <div class="col-lg-12">
-              <input type="text" name='fullname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}">
-            </div>
-          </div>-->
-          
-          <div class="panel panel-danger" ng-if="passwordValidationError || error">
+    <div class="panel panel-danger" ng-if="passwordValidationError || error">
       <div class="panel-body" ng-if="passwordValidationError">
         {{('PROFIlE.' + passwordValidationError) | translate}}
       </div>
@@ -110,16 +96,34 @@
         </div>
       </div>
     </div>
-          
-          <!--<g:select name="plan" optionKey="key" optionValue="value" from="${planMap}" multiple="true"/>-->
-          
-          <span>
 
-            <!--<button class="btn btn-primary pull-right">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>-->
-            <div class="modal-footer">
-  <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
+
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-3">
+        <label> <input type="checkbox" ng-model="user.enabled"/> &nbsp; Enabled (user can log in and view videos)</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3">
+        <label class="control-label">Roles</label>
+      </div>
+      <div class="col-sm-8">
+        <div class="form-control" style="height: auto;">
+          <div ng-repeat="role in roles">
+            <input type="checkbox" name="authorities[]" value="{{role.id}}" ng-checked="checkAuthorities(role.id)" ng-click="toggleAuthorities(role)"> {{role.displayName}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-        </form>
+
+<div class="modal-footer">
+  <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
+  <button ng-if="user.id" class="btn btn-success" ng-click="saveAndInviteUser(user)">Save User</button>
+  <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+</div>
+
       </div>
     </div>
     <div class="page-container-push"></div>
