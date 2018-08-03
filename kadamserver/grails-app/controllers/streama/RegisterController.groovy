@@ -74,9 +74,7 @@ class RegisterController {
 	planMap.put(2000, '1 year - 2000')
 
     String postUrl = request.contextPath + 'register/register'
-    render view: 'registration', model: [postUrl: postUrl,
-    							 planMap: planMap,
-                                 gspLayout: conf.gsp.layoutAuth]
+    render view: 'modal--create-user.tpl.htm'
   }
 
   /** The redirect action for Ajax requests. */

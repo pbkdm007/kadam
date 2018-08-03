@@ -111,7 +111,7 @@
       </div>
     </div>
           
-          <g:select name="plan" optionKey="key" optionValue="value" from="${planMap}" multiple="true"/>
+          <!--<g:select name="plan" optionKey="key" optionValue="value" from="${planMap}" multiple="true"/>-->
           
           <span>
 
