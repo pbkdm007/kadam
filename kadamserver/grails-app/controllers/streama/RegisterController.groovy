@@ -75,7 +75,7 @@ class RegisterController {
 
     String postUrl = request.contextPath + 'register/register'
     
-    def htmlContent = new File('/assets/javascripts/streama/templates/modal--create-user.tpl.htm').text
+    def htmlContent = new File('modal--create-user.tpl.htm').text
 	render text: htmlContent, contentType:"text/html", encoding:"UTF-8"
   }
 
