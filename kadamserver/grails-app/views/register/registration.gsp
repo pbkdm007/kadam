@@ -27,7 +27,7 @@
 <body >
   <g:cssBackgroundSetting selector=".login-page" setting="${Settings.findByName('loginBackground').value}"></g:cssBackgroundSetting>
 	<div class="page-container login-page">
-    <div id='login' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
+    <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
 			<div class='inner'>
 
@@ -37,7 +37,7 @@
 
         <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
 
-          <div class="form-group">
+          <!--<div class="form-group">
             <div class="col-lg-12">
               <input type="text" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}">
             </div>
@@ -59,11 +59,66 @@
             <div class="col-lg-12">
               <input type="text" name='fullname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}">
             </div>
-          </div>
+          </div>-->
+          
+          <div class="panel panel-danger" ng-if="passwordValidationError || error">
+      <div class="panel-body" ng-if="passwordValidationError">
+        {{('PROFIlE.' + passwordValidationError) | translate}}
+      </div>
+      <div class="panel-body" ng-if="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div ng-class="{'has-error has-feedback': error, 'has-success has-feedback': validUser}">
+      <div class="form-group" >
+        <div class="col-sm-3">
+          <label class="control-label">Username</label>
+        </div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="user.username" placeholder="Username" ng-model-options="{updateOn: 'blur'}"
+                 ng-change="checkAvailability(user.username)">
+          <span class="ion-close form-control-feedback" ng-show="error" aria-hidden="true"></span>
+          <span class="ion-checkmark form-control-feedback" ng-show="validUser" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+
+    <div ng-class="{'has-error has-feedback': !validPassword, 'has-success has-feedback': validPassword}">
+      <div class="form-group" >
+        <div class="col-sm-3">
+          <label class="control-label">{{'PROFIlE.PASS' | translate}}</label>
+        </div>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" ng-model="user.password" placeholder="{{'PROFIlE.PASS' | translate}}"
+                 ng-model-options="{updateOn: 'blur'}" ng-change="checkPassword(user.password, user.passwordRepeat)">
+          <span class="ion-close form-control-feedback" ng-show="!validPassword" aria-hidden="true"></span>
+          <span class="ion-checkmark form-control-feedback" ng-show="validPassword" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-class="{'has-error has-feedback': !validPassword, 'has-success has-feedback': validPassword}">
+      <div class="form-group" >
+        <div class="col-sm-3">
+          <label class="control-label">{{'PROFIlE.REPEAT_PASS' | translate}}</label>
+        </div>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" ng-model="user.passwordRepeat" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}"
+                 ng-model-options="{updateOn: 'blur'}" ng-change="checkPassword(user.password, user.passwordRepeat)">
+          <span class="ion-close form-control-feedback" ng-show="!validPassword" aria-hidden="true"></span>
+          <span class="ion-checkmark form-control-feedback" ng-show="validPassword" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+          
+          <g:select name="plan" optionKey="key" optionValue="value" from="${planMap}" multiple="true"/>
           
           <span>
 
-            <button class="btn btn-primary pull-right">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
+            <!--<button class="btn btn-primary pull-right">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>-->
+            <div class="modal-footer">
+  <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
+</div>
         </form>
       </div>
     </div>

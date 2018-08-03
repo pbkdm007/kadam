@@ -28,7 +28,7 @@ class RegisterController {
   /** Dependency injection for the settingsService. */
   def settingsService
 
-  def login() {
+  def register() {
     SecurityContextHolder.clearContext();
 
       HttpSession session = request.getSession(false);
@@ -52,17 +52,6 @@ class RegisterController {
 
   }
 
-  /** Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise. */
-  def index() {
-
-    if (springSecurityService.isLoggedIn()) {
-      redirect uri: conf.successHandler.defaultTargetUrl
-    }
-    else {
-      redirect action: 'auth', params: params
-    }
-  }
-
   /** Show the login page. */
   def show() {
 
@@ -78,12 +67,15 @@ class RegisterController {
       redirect uri: conf.successHandler.defaultTargetUrl
       return
     }
+    
+    def planMap = [:]
+	planMap.put(200, '1 month - 200')
+	planMap.put(1000, '6 month - 1000')
+	planMap.put(2000, '1 year - 2000')
 
-    String postUrl = request.contextPath + conf.apf.filterProcessesUrl
+    String postUrl = request.contextPath + 'register/register'
     render view: 'registration', model: [postUrl: postUrl,
-                                 rememberMeParameter: conf.rememberMe.parameter,
-                                 usernameParameter: conf.apf.usernameParameter,
-                                 passwordParameter: conf.apf.passwordParameter,
+    							 planMap: planMap,
                                  gspLayout: conf.gsp.layoutAuth]
   }
 
