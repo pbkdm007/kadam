@@ -74,7 +74,9 @@ class RegisterController {
 	planMap.put(2000, '1 year - 2000')
 
     String postUrl = request.contextPath + 'register/register'
-    render view: 'modal--create-user.tpl.htm'
+    
+    def htmlContent = new File('/assets/javascripts/streama/templates/modal--create-user.tpl.htm').text
+	render text: htmlContent, contentType:"text/html", encoding:"UTF-8"
   }
 
   /** The redirect action for Ajax requests. */
