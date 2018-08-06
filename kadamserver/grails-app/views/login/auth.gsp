@@ -52,7 +52,7 @@
             <g:if test="${streama.Settings.findBySettingsKey('First Time Login Info')?.value == 'true'}">
               Please login with your username and password. <br />
         	  Don't have an account?
-        	  <a ui-sref="profile">Sign up now!</a>
+        	  <a ui-sref="register">Sign up now!</a>
             </g:if>
             <input style="display: none;" type='checkbox' name='remember_me' id='remember_me' checked='checked'/>
 
