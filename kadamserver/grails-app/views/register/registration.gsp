@@ -16,7 +16,6 @@
 
 	<asset:stylesheet src="vendor.css"/>
 	<asset:stylesheet src="application.css"/>
-	<asset:javascript src="/streama/controllers/modal-user-ctrl.js" />
 
   <g:linkRelIconSetting setting="${Settings.findByName('favicon').value}"></g:linkRelIconSetting>
 
@@ -30,7 +29,7 @@
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner'>
+			<div class='inner' ng-app="streama" class="ng-cloak" ng-controller="modalUserCtrl">
 
       <g:if test='${flash.message}'>
 			  <div class='login_message'>${flash.message}</div>
@@ -108,6 +107,7 @@
 
 	<asset:javascript src="vendor.js" />
 	<asset:javascript src="/streama/streama.translations.js" />
+	<asset:javascript src="/streama/controllers/modal-user-ctrl.js" />
 
   <script type='text/javascript'>
     <!--
