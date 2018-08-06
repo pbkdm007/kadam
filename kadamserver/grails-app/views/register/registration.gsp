@@ -98,30 +98,11 @@
     </div>
 
 
-    <div class="form-group">
-      <div class="col-sm-8 col-sm-offset-3">
-        <label> <input type="checkbox" ng-model="user.enabled"/> &nbsp; Enabled (user can log in and view videos)</label>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-3">
-        <label class="control-label">Roles</label>
-      </div>
-      <div class="col-sm-8">
-        <div class="form-control" style="height: auto;">
-          <div ng-repeat="role in roles">
-            <input type="checkbox" name="authorities[]" value="{{role.id}}" ng-checked="checkAuthorities(role.id)" ng-click="toggleAuthorities(role)"> {{role.displayName}}
-          </div>
-        </div>
-      </div>
-    </div>
   </form>
 </div>
 
 <div class="modal-footer">
   <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
-  <button ng-if="user.id" class="btn btn-success" ng-click="saveAndInviteUser(user)">Save User</button>
-  <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
 </div>
 
       </div>
