@@ -1,7 +1,7 @@
 <%@ page import="grails.converters.JSON" %>
 <%@ page import="streama.Settings" %>
 <!doctype html>
-<html lang="en" class="no-js">
+<html ng-app="streamaApp" lang="en" class="no-js">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
