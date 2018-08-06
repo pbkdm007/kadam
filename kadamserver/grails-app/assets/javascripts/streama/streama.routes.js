@@ -6,6 +6,12 @@ angular.module('streama').config(function ($stateProvider) {
 	$stateProvider
 
 		//BASE ROUTES
+		.state('register', {
+			url: '/register',
+			templateUrl: '/streama/register.htm',
+			controller: 'registerCtrl'
+		})
+		
 		.state('dash', {
 			url: '/dash?genreId?mediaModal?mediaType',
 			templateUrl: '/streama/dash.htm',
