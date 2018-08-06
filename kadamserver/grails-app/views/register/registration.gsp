@@ -90,13 +90,12 @@
       </div>
     </div>
 
-
-  </form>
-  
-  <div class="modal-footer">
+<div class="modal-footer">
   <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
 </div>
 
+  </form>
+  
       </div>
     </div>
     <div class="page-container-push"></div>
