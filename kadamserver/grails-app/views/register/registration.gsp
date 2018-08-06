@@ -16,6 +16,7 @@
 
 	<asset:stylesheet src="vendor.css"/>
 	<asset:stylesheet src="application.css"/>
+	<asset:javascript src="/streama/controllers/modal-user-ctrl.js" />
 
   <g:linkRelIconSetting setting="${Settings.findByName('favicon').value}"></g:linkRelIconSetting>
 
@@ -35,9 +36,7 @@
 			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <div class="modal-body">
-
-  <form class="form-horizontal">
+        <form class="form-horizontal">
     <legend>
       Register
     </legend>
@@ -94,9 +93,8 @@
 
 
   </form>
-</div>
-
-<div class="modal-footer">
+  
+  <div class="modal-footer">
   <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
 </div>
 

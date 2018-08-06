@@ -97,7 +97,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 
 
-grails.mail.default.from = "Streama <info@streama.com>"
+grails.mail.default.from = "Kadam <info@kadam.com>"
 
 grails.gorm.default.constraints = {
   'dateCreated'(bindable: false)
