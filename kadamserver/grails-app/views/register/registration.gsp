@@ -29,73 +29,42 @@
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner' ng-app="streama" class="ng-cloak" ng-controller="modalUserCtrl">
+			<div class='inner'>
 
       <g:if test='${flash.message}'>
 			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <form class="form-horizontal">
-    <legend>
-      Register
-    </legend>
+        <form action='/register/register' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
 
-    <div class="panel panel-danger" ng-if="passwordValidationError || error">
-      <div class="panel-body" ng-if="passwordValidationError">
-        {{('PROFIlE.' + passwordValidationError) | translate}}
-      </div>
-      <div class="panel-body" ng-if="error">
-        {{error}}
-      </div>
-    </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="text" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}">
+            </div>
+          </div>
 
-    <div ng-class="{'has-error has-feedback': error, 'has-success has-feedback': validUser}">
-      <div class="form-group" >
-        <div class="col-sm-3">
-          <label class="control-label">Username</label>
-        </div>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" ng-model="user.username" placeholder="Username" ng-model-options="{updateOn: 'blur'}"
-                 ng-change="checkAvailability(user.username)">
-          <span class="ion-close form-control-feedback" ng-show="error" aria-hidden="true"></span>
-          <span class="ion-checkmark form-control-feedback" ng-show="validUser" aria-hidden="true"></span>
-        </div>
-      </div>
-    </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-lg-12">
+              <input type="text" name='fullname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}">
+            </div>
+          </div>
+          
+          <span>
 
-    <div ng-class="{'has-error has-feedback': !validPassword, 'has-success has-feedback': validPassword}">
-      <div class="form-group" >
-        <div class="col-sm-3">
-          <label class="control-label">{{'PROFIlE.PASS' | translate}}</label>
-        </div>
-        <div class="col-sm-8">
-          <input type="password" class="form-control" ng-model="user.password" placeholder="{{'PROFIlE.PASS' | translate}}"
-                 ng-model-options="{updateOn: 'blur'}" ng-change="checkPassword(user.password, user.passwordRepeat)">
-          <span class="ion-close form-control-feedback" ng-show="!validPassword" aria-hidden="true"></span>
-          <span class="ion-checkmark form-control-feedback" ng-show="validPassword" aria-hidden="true"></span>
-        </div>
-      </div>
-    </div>
-    <div ng-class="{'has-error has-feedback': !validPassword, 'has-success has-feedback': validPassword}">
-      <div class="form-group" >
-        <div class="col-sm-3">
-          <label class="control-label">{{'PROFIlE.REPEAT_PASS' | translate}}</label>
-        </div>
-        <div class="col-sm-8">
-          <input type="password" class="form-control" ng-model="user.passwordRepeat" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}"
-                 ng-model-options="{updateOn: 'blur'}" ng-change="checkPassword(user.password, user.passwordRepeat)">
-          <span class="ion-close form-control-feedback" ng-show="!validPassword" aria-hidden="true"></span>
-          <span class="ion-checkmark form-control-feedback" ng-show="validPassword" aria-hidden="true"></span>
-        </div>
-      </div>
-    </div>
-
-<div class="modal-footer">
-  <button ng-if="!user.id" class="btn btn-success" ng-disabled="(!validUser || !validPassword) && !user.id" ng-click="saveAndCreateUser(user)">Save & Create User</button>
-</div>
-
-  </form>
-  
+            <button class="btn btn-primary pull-right">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
+        </form>
       </div>
     </div>
     <div class="page-container-push"></div>
@@ -106,7 +75,6 @@
 
 	<asset:javascript src="vendor.js" />
 	<asset:javascript src="/streama/streama.translations.js" />
-	<asset:javascript src="/streama/controllers/modal-user-ctrl.js" />
 
   <script type='text/javascript'>
     <!--

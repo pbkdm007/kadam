@@ -29,29 +29,36 @@ class RegisterController {
   def settingsService
 
   def register() {
-    SecurityContextHolder.clearContext();
+	def username = params.username
+    def isInvite = true
+    def result = [:]
 
-      HttpSession session = request.getSession(false);
-      if (session != null) {
-        session.invalidate();
-      }
-
-    def conf = getConf()
-
-    if (springSecurityService.isLoggedIn()) {
-      redirect uri: conf.successHandler.defaultTargetUrl
-      return
+    if (User.findByUsername(username)) {
+      result.error = (isInvite == "true") ? "User with that E-Mail-Address already exists." : "Username already exists."
+      flash.message = result
+    } else {
+    	if (params.password != params.password2) {
+                flash.message = "Passwords do not match"
+                redirect(action:'show')
+            }
+            else {
+            	User user = new User(
+                        username: params.username,
+                        password: params.password
+                )
+                user.validate()
+			    if (user.hasErrors()) {
+			      render status: NOT_ACCEPTABLE
+			      return
+			    }
+			
+			    user.save flush: true
+			
+			    UserRole.removeAll(user)
+            }
     }
-
-    String postUrl = request.contextPath + conf.apf.filterProcessesUrl
-    render view: 'auth', model: [postUrl: postUrl,
-                                 rememberMeParameter: conf.rememberMe.parameter,
-                                 usernameParameter: conf.apf.usernameParameter,
-                                 passwordParameter: conf.apf.passwordParameter,
-                                 gspLayout: conf.gsp.layoutAuth]
-
   }
-
+  
   /** Show the login page. */
   def show() {
 
@@ -73,8 +80,6 @@ class RegisterController {
 	planMap.put(1000, '6 month - 1000')
 	planMap.put(2000, '1 year - 2000')
 
-    String postUrl = request.contextPath + 'register/register'
-    
 	render view: 'registration'
   }
 
