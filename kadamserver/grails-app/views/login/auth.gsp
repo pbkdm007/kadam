@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<title>${Settings.findByName('title').value}</title>
+	<base href="<g:createLink uri="/" />">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 	<style type="text/css">
@@ -16,6 +17,9 @@
 
 	<asset:stylesheet src="vendor.css"/>
 	<asset:stylesheet src="application.css"/>
+	
+	<asset:javascript src="vendor.js"/>
+	<asset:javascript src="application.js"/>
 
   <g:linkRelIconSetting setting="${Settings.findByName('favicon').value}"></g:linkRelIconSetting>
 
