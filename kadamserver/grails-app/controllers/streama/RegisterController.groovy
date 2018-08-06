@@ -36,6 +36,7 @@ class RegisterController {
     if (User.findByUsername(username)) {
       result.error = (isInvite == "true") ? "User with that E-Mail-Address already exists." : "Username already exists."
       flash.message = result
+      redirect(action:'show')
     } else {
     	if (params.password != params.password2) {
                 flash.message = "Passwords do not match"
@@ -55,6 +56,8 @@ class RegisterController {
 			    user.save flush: true
 			
 			    UserRole.removeAll(user)
+			    
+			    render view: 'auth'
             }
     }
   }
@@ -80,7 +83,8 @@ class RegisterController {
 	planMap.put(1000, '6 month - 1000')
 	planMap.put(2000, '1 year - 2000')
 
-	render view: 'registration'
+	String postUrl = request.contextPath + 'register/register'
+    render view: 'registration', model: [postUrl: postUrl]
   }
 
   /** The redirect action for Ajax requests. */
