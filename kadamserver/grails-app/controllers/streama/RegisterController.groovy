@@ -66,7 +66,7 @@ class RegisterController {
 			
 			    UserRole.removeAll(user)
 			    
-			    render view: 'auth'
+			    redirect(uri: '/')
             }
     }
   }

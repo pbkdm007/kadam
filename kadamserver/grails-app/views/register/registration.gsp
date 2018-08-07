@@ -32,34 +32,56 @@
 			<div class='inner'>
 
       <g:if test='${message}'>
-			  <div class='login_message'>${message}</div>
+      <div class="panel panel-danger">
+			  <div class='panel-body'>${message}</div>
+			  </div>
 			</g:if>
 
         <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
-
+	<legend>
+      Register
+      <div class="spinner" ng-show="loading">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </legend>
+    
           <div class="form-group">
-            <div class="col-lg-12">
+          <div class="col-sm-3">
+          <label class="control-label">Username</label>
+        </div>
+            <div class="col-sm-8">
               <input type="text" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}">
               <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-lg-12">
+          <div class="col-sm-3">
+          <label class="control-label">{{'LOGIN.PASSWORD' | translate}}</label>
+        </div>
+            <div class="col-sm-8">
               <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}">
               <span class="${passwordspanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
           <div class="form-group">
-            <div class="col-lg-12">
+          <div class="col-sm-3">
+          <label class="control-label">{{'PROFIlE.REPEAT_PASS' | translate}}</label>
+        </div>
+            <div class="col-sm-8">
               <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}">
               <span class="${password2spanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
           <div class="form-group">
-            <div class="col-lg-12">
+          div class="col-sm-3">
+          <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
+        </div>
+            <div class="col-sm-8">
               <input type="text" name='fullname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}">
             </div>
           </div>
