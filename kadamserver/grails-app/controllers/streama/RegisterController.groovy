@@ -34,20 +34,24 @@ class RegisterController {
     def result = [:]
 
     if (User.findByUsername(username)) {
-      flash.message = "Username already exists."
-      usernamespanclass = "ion-close form-control-feedback"
-      redirect(action:'show')
+      String message = "Username already exists."
+      String usernamespanclass = "ion-close form-control-feedback"
+      String postUrl = request.contextPath + '/register/register'
+      render view: 'registration', model: [postUrl: postUrl, flash.message: message, 
+      usernamespanclass: usernamespanclass]
     } else {
     	if (params.password != params.password2) {
-                flash.message = "Passwords do not match"
-                passwordspanclass = "ion-close form-control-feedback"
-                password2spanclass = "ion-close form-control-feedback"
-                redirect(action:'show')
+                String message = "Passwords do not match"
+                String passwordspanclass = "ion-close form-control-feedback"
+                String password2spanclass = "ion-close form-control-feedback"
+                String postUrl = request.contextPath + '/register/register'
+    			render view: 'registration', model: [postUrl: postUrl, flash.message: message, 
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
             }
             else {
-            usernamespanclass = "ion-checkmark form-control-feedback"
-            passwordspanclass = "ion-checkmark form-control-feedback"
-            password2spanclass = "ion-checkmark form-control-feedback"
+            	String usernamespanclass = "ion-checkmark form-control-feedback"
+            	String passwordspanclass = "ion-checkmark form-control-feedback"
+            	String password2spanclass = "ion-checkmark form-control-feedback"
             	User user = new User(
                         username: params.username,
                         password: params.password
