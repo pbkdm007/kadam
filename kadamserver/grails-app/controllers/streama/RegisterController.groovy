@@ -66,25 +66,20 @@ class RegisterController {
   def show() {
 
     /** Check if anonymous access is enabled, to avoid login **/
-    if (settingsService.anonymousAccess) {
-      User anonymous = User.findByUsername("anonymous")
-      springSecurityService.reauthenticate(anonymous.username,anonymous.password)
-    }
+    User anonymous = User.findByUsername("anonymous")
+    springSecurityService.reauthenticate(anonymous.username,anonymous.password)
 
     def conf = getConf()
 
-    if (springSecurityService.isLoggedIn()) {
-      redirect uri: conf.successHandler.defaultTargetUrl
-      return
-    }
-    
     def planMap = [:]
 	planMap.put(200, '1 month - 200')
 	planMap.put(1000, '6 month - 1000')
 	planMap.put(2000, '1 year - 2000')
 
-	String postUrl = request.contextPath + 'register/register'
-    render view: 'registration', model: [postUrl: postUrl]
+	/** String postUrl = request.contextPath + 'register/register'
+    render view: 'registration', model: [postUrl: postUrl] */
+    
+    redirect(uri: '/#/register')
   }
 
   /** The redirect action for Ajax requests. */
