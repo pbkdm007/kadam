@@ -70,9 +70,9 @@ class RegisterController {
   /** Show the login page. */
   def show() {
 
-    /** Check if anonymous access is enabled, to avoid login **/
+    /** Check if anonymous access is enabled, to avoid login 
     User anonymous = User.findByUsername("anonymous")
-    springSecurityService.reauthenticate(anonymous.username,anonymous.password)
+    springSecurityService.reauthenticate(anonymous.username,anonymous.password) **/
 
     def conf = getConf()
 
