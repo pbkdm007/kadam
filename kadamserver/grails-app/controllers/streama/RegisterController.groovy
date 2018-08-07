@@ -34,15 +34,20 @@ class RegisterController {
     def result = [:]
 
     if (User.findByUsername(username)) {
-      result.error = (isInvite == "true") ? "User with that E-Mail-Address already exists." : "Username already exists."
-      flash.message = result
+      flash.message = "Username already exists."
+      usernamespanclass = "ion-close form-control-feedback"
       redirect(action:'show')
     } else {
     	if (params.password != params.password2) {
                 flash.message = "Passwords do not match"
+                passwordspanclass = "ion-close form-control-feedback"
+                password2spanclass = "ion-close form-control-feedback"
                 redirect(action:'show')
             }
             else {
+            usernamespanclass = "ion-checkmark form-control-feedback"
+            passwordspanclass = "ion-checkmark form-control-feedback"
+            password2spanclass = "ion-checkmark form-control-feedback"
             	User user = new User(
                         username: params.username,
                         password: params.password
@@ -76,10 +81,10 @@ class RegisterController {
 	planMap.put(1000, '6 month - 1000')
 	planMap.put(2000, '1 year - 2000')
 
-	/** String postUrl = request.contextPath + 'register/register'
-    render view: 'registration', model: [postUrl: postUrl] */
+	String postUrl = request.contextPath + '/register/register'
+    render view: 'registration', model: [postUrl: postUrl]
     
-    redirect(uri: '/#/register')
+    /** redirect(uri: '/#/register') */
   }
 
   /** The redirect action for Ajax requests. */

@@ -35,23 +35,26 @@
 			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <form action='/register/register' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
+        <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
 
           <div class="form-group">
             <div class="col-lg-12">
               <input type="text" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}">
+              <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-lg-12">
               <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}">
+              <span class="${passwordspanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
           <div class="form-group">
             <div class="col-lg-12">
               <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}">
+              <span class="${password2spanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
