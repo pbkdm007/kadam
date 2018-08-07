@@ -37,7 +37,7 @@ class RegisterController {
       String message = "Username already exists."
       String usernamespanclass = "ion-close form-control-feedback"
       String postUrl = request.contextPath + '/register/register'
-      render view: 'registration', model: [postUrl: postUrl, flash.message: message, 
+      render view: 'registration', model: [postUrl: postUrl, message: message, 
       usernamespanclass: usernamespanclass]
     } else {
     	if (params.password != params.password2) {
@@ -45,7 +45,7 @@ class RegisterController {
                 String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
                 String postUrl = request.contextPath + '/register/register'
-    			render view: 'registration', model: [postUrl: postUrl, flash.message: message, 
+    			render view: 'registration', model: [postUrl: postUrl, message: message, 
     			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
             }
             else {

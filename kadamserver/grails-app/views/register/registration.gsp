@@ -31,8 +31,8 @@
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
 			<div class='inner'>
 
-      <g:if test='${flash.message}'>
-			  <div class='login_message'>${flash.message}</div>
+      <g:if test='${message}'>
+			  <div class='login_message'>${message}</div>
 			</g:if>
 
         <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
