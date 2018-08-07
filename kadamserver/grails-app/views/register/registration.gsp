@@ -29,7 +29,7 @@
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner'>
+			<div class='modal-body'>
 
       <g:if test='${message}'>
       <div class="panel panel-danger">
@@ -78,7 +78,7 @@
           </div>
           
           <div class="form-group">
-          div class="col-sm-3">
+          <div class="col-sm-3">
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
         </div>
             <div class="col-sm-8">
