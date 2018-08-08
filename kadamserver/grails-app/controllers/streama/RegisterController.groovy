@@ -54,7 +54,8 @@ class RegisterController {
             	String password2spanclass = "ion-checkmark form-control-feedback"
             	User user = new User(
                         username: params.username,
-                        password: params.password
+                        password: params.password,
+                        fullName: params.fullname
                 )
                 user.validate()
 			    if (user.hasErrors()) {
@@ -66,7 +67,11 @@ class RegisterController {
 			
 			    UserRole.removeAll(user)
 			    
-			    redirect(uri: '/')
+			    Cookie cookie = new Cookie("myCookie",username)
+				cookie.maxAge = 100
+				response.addCookie(cookie)
+			    
+			    redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355")
             }
     }
   }
@@ -87,6 +92,18 @@ class RegisterController {
 
 	String postUrl = request.contextPath + '/register/register'
     render view: 'registration', model: [postUrl: postUrl]
+    
+    /** redirect(uri: '/#/register') */
+  }
+  
+  def error() {
+
+    def conf = getConf()
+    
+    String username = g.cookie(name: 'myCookie')
+
+	String postUrl = request.contextPath + '/register/register'
+    render view: 'registration', model: [postUrl: postUrl, message: username]
     
     /** redirect(uri: '/#/register') */
   }
