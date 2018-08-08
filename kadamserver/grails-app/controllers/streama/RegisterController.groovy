@@ -97,6 +97,16 @@ class RegisterController {
     /** redirect(uri: '/#/register') */
   }
   
+  def success() {
+
+    def conf = getConf()
+    
+    String username = g.cookie(name: 'myCookie')
+
+	flash.message = username
+    redirect action: 'auth', params: params
+  }
+  
   def error() {
 
     def conf = getConf()
@@ -105,8 +115,6 @@ class RegisterController {
 
 	String postUrl = request.contextPath + '/register/register'
     render view: 'registration', model: [postUrl: postUrl, message: username]
-    
-    /** redirect(uri: '/#/register') */
   }
 
   /** The redirect action for Ajax requests. */
