@@ -72,7 +72,8 @@ class RegisterController {
 				cookie.maxAge = 100
 				response.addCookie(cookie)
 			    
-			    redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355")
+			    redirect(url: "https://www.payumoney.com/sandbox/paybypayumoney/#/898B9046B7F1201205DA2DBCC4083632")
+			    /** redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355") */
             }
     }
   }
