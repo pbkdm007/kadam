@@ -43,6 +43,11 @@ class RegisterController {
 	def username = params.username
     def isInvite = true
     def result = [:]
+    
+    if(empty(username))
+    {
+    	return
+    }
 
     if (User.findByUsername(username)) {
       String message = "Username already exists."
