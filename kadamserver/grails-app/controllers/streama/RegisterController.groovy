@@ -169,7 +169,7 @@ class RegisterController {
         String txn = "abcd";
         String hash = "";
         String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
-        String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||";
+        String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5";
         if (empty(tempparams.get("hash")) && tempparams.size() > 0) {
             if (empty(tempparams.get("key")) || empty(txnid) || empty(tempparams.get("amount")) || empty(tempparams.get("firstname")) || empty(tempparams.get("email")) || empty(tempparams.get("phone")) || empty(tempparams.get("productinfo")) || empty(tempparams.get("surl")) || empty(tempparams.get("furl")) || empty(tempparams.get("service_provider"))) {
                 error = 1;
@@ -181,6 +181,7 @@ class RegisterController {
                     hashString = hashString.concat("|");
                     urlParams.put(part, empty(tempparams.get(part)) ? "" : tempparams.get(part).trim());
                 }
+                hashString = hashString.concat("|||||");
                 hashString = hashString.concat(salt);
                 hash = hashCal("SHA-512", hashString);
                 action1 = base_url.concat("/_payment");
