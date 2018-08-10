@@ -100,7 +100,7 @@
           <label class="control-label">Select Plan</label>
         </div>
             <div class="col-sm-8">
-          <select name="amount">
+          <select name="amount" class="form-control">
 		  <option value="100">1 month plan - 100</option>
 		  <option value="500">6 month plan - 500</option>
 		  <option value="1000">1 year plan - 1000</option>
