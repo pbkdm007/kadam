@@ -105,7 +105,7 @@ class RegisterController {
             MessageDigest algorithm = MessageDigest.getInstance(type);
             algorithm.reset();
             algorithm.update(hashseq);
-            byte messageDigest[] = algorithm.digest();
+            byte[] messageDigest = algorithm.digest();
             for (int i = 0; i < messageDigest.length; i++) {
                 String hex = Integer.toHexString(0xFF & messageDigest[i]);
                 if (hex.length() == 1) {
