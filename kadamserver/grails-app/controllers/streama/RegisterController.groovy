@@ -129,7 +129,7 @@ class RegisterController {
             {
         response.setContentType("text/html;charset=UTF-8");
 		String key = "";
-        String salt = "eCwWELxi";
+        String salt = "e5iIg1jwi8";
         String action1 = "";
         String base_url = "https://sandboxsecure.payu.in";
         error = 0;
@@ -169,7 +169,7 @@ class RegisterController {
         String txn = "abcd";
         String hash = "";
         String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
-        String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+        String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||";
         if (empty(tempparams.get("hash")) && tempparams.size() > 0) {
             if (empty(tempparams.get("key")) || empty(txnid) || empty(tempparams.get("amount")) || empty(tempparams.get("firstname")) || empty(tempparams.get("email")) || empty(tempparams.get("phone")) || empty(tempparams.get("productinfo")) || empty(tempparams.get("surl")) || empty(tempparams.get("furl")) || empty(tempparams.get("service_provider"))) {
                 error = 1;
@@ -195,7 +195,7 @@ class RegisterController {
             action1 = base_url.concat("/_payment");
         }
 
-		urlParams.put("key","gtKFFx")
+		urlParams.put("key","rjQUPktU")
 		urlParams.put("txnid", txnid);
         urlParams.put("hash", hash);
         urlParams.put("action", action1);
