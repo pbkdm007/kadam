@@ -108,7 +108,7 @@
 		  </div>
           </div>
           
-          <input type="hidden" name="key"value="dKqf7Mff" />
+          <input type="hidden" name="key" value="dKqf7Mff" />
             <input type="hidden" name="hash_string" value="" />
             <input type="hidden" name="hash" />
 

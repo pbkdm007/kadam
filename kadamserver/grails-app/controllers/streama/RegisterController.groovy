@@ -87,7 +87,7 @@ class RegisterController {
 				cookie.maxAge = 100
 				response.addCookie(cookie)
 			    
-			    response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
+			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
 			    
 			    pay(request, response)
 			    /** redirect(url: "https://www.payumoney.com/sandbox/paybypayumoney/#/898B9046B7F1201205DA2DBCC4083632")
@@ -104,26 +104,26 @@ class RegisterController {
         }
     }
 
-    public String hashCal(String type, String str) {
-        byte[] hashseq = str.getBytes();
-        StringBuffer hexString = new StringBuffer();
-        try {
-            MessageDigest algorithm = MessageDigest.getInstance(type);
-            algorithm.reset();
-            algorithm.update(hashseq);
-            byte[] messageDigest = algorithm.digest();
-            for (int i = 0; i < messageDigest.length; i++) {
-                String hex = Integer.toHexString(0xFF & messageDigest[i]);
-                if (hex.length() == 1) {
-                    hexString.append("0");
-                }
-                hexString.append(hex);
-            }
+    public String hashCal(String type,String str){
+		byte[] hashseq=str.getBytes();
+		StringBuffer hexString = new StringBuffer();
+		try{
+		MessageDigest algorithm = MessageDigest.getInstance(type);
+		algorithm.reset();
+		algorithm.update(hashseq);
+		byte[] messageDigest = algorithm.digest();
+            
+		for (int i=0;i<messageDigest.length;i++) {
+			String hex=Integer.toHexString(0xFF & messageDigest[i]);
+			if(hex.length()==1) hexString.append("0");
+			hexString.append(hex);
+		}
+			
+		}catch(NoSuchAlgorithmException nsae){ }
+		
+		return hexString.toString();
 
-        } catch (NoSuchAlgorithmException nsae) {
-        }
-        return hexString.toString();
-    }
+	}
 
     public Map<String, String> hashCalMethod(HttpServletRequest request, HttpServletResponse response)
             {
@@ -177,14 +177,9 @@ class RegisterController {
                 
                 String[] hashVarSeq = hashSequence.split("\\|");
                 for (String part : hashVarSeq) {
-                    if (part.equals("txnid")) {
-                        hashString = hashString + txnid;
-                        urlParams.put("txnid", txnid);
-                    } else {
-                        hashString = (empty(tempparams.get(part))) ? hashString.concat("") : hashString.concat(tempparams.get(part).trim());
-                        urlParams.put(part, empty(tempparams.get(part)) ? "" : tempparams.get(part).trim());
-                    }
+                    hashString = (empty(tempparams.get(part))) ? hashString.concat("") : hashString.concat(tempparams.get(part).trim());
                     hashString = hashString.concat("|");
+                    urlParams.put(part, empty(tempparams.get(part)) ? "" : tempparams.get(part).trim());
                 }
                 hashString = hashString.concat(salt);
                 hash = hashCal("SHA-512", hashString);
@@ -200,6 +195,8 @@ class RegisterController {
             action1 = base_url.concat("/_payment");
         }
 
+		urlParams.put("key","dKqf7Mff")
+		urlParams.put("txnid", txnid);
         urlParams.put("hash", hash);
         urlParams.put("action", action1);
         urlParams.put("hashString", hashString);
