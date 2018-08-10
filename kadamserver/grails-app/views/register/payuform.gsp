@@ -12,7 +12,7 @@ function submitPayuForm() {
     }
 </script>
 
-<body onload="submitPayuForm();">
+<body>
  
 
 <form action="${ action1 }" method="post" name="payuForm">
