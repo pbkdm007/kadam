@@ -89,7 +89,7 @@ class RegisterController {
 			    
 			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
 			    
-			    pay(request, response)
+			    pay()
 			    /** redirect(url: "https://www.payumoney.com/sandbox/paybypayumoney/#/898B9046B7F1201205DA2DBCC4083632")
 			     redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355") */
             }
@@ -125,7 +125,7 @@ class RegisterController {
 
 	}
 
-    public Map<String, String> hashCalMethod(HttpServletRequest request, HttpServletResponse response)
+    public Map<String, String> hashCalMethod()
             {
         response.setContentType("text/html;charset=UTF-8");
 		String key = "";
@@ -205,8 +205,8 @@ class RegisterController {
         return urlParams;
     }
     
-    def pay(HttpServletRequest request, HttpServletResponse response) {
-    	Map<String, String> values = hashCalMethod(request, response);
+    def pay() {
+    	Map<String, String> values = hashCalMethod();
     	render view: 'payuform', model: [tempparams: values]
     }
   
@@ -218,11 +218,6 @@ class RegisterController {
     springSecurityService.reauthenticate(anonymous.username,anonymous.password) **/
 
     def conf = getConf()
-
-    def planMap = [:]
-	planMap.put(200, '1 month - 200')
-	planMap.put(1000, '6 month - 1000')
-	planMap.put(2000, '1 year - 2000')
 
 	String postUrl = request.contextPath + '/register/register'
     render view: 'registration', model: [postUrl: postUrl]
@@ -237,17 +232,15 @@ class RegisterController {
     String username = g.cookie(name: 'myCookie')
 
 	flash.message = username
-    redirect action: 'auth', params: params
+    render view: 'auth'
   }
   
   def error() {
 
     def conf = getConf()
     
-    String username = g.cookie(name: 'myCookie')
-
 	String postUrl = request.contextPath + '/register/register'
-    render view: 'registration', model: [postUrl: postUrl, message: username]
+    render view: 'registration', model: [postUrl: postUrl, message: "error"]
   }
 
   /** The redirect action for Ajax requests. */

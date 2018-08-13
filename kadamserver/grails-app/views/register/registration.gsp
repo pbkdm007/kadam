@@ -75,6 +75,11 @@
               <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}"/>
               <span class="${password2spanclass}" aria-hidden="true"></span>
             </div>
+            <div class="col-sm-9" ng-class="{'has-success has-feedback': vm.valid}">
+              <input type="password" class="form-control" name="passwordRepeat" ng-model="passwordRepeat" placeholder="Repeat Password "
+                     ng-change="vm.valid = (password == passwordRepeat && password.length > 5)">
+              <span class="ion-checkmark form-control-feedback" ng-show="vm.valid" aria-hidden="true"></span>
+            </div>
           </div>
           
           <div class="form-group">
