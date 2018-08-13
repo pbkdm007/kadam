@@ -60,8 +60,24 @@ class RegisterController {
       render view: 'registration', model: [postUrl: postUrl, message: message, 
       usernamespanclass: usernamespanclass]
     } else {
-    	if (params.password != params.password2) {
-                String message = "Passwords do not match"
+    		if (empty(params.password)) {
+    			String message = "The password can not be empty"
+    			String passwordspanclass = "ion-close form-control-feedback"
+                String password2spanclass = "ion-close form-control-feedback"
+                String postUrl = request.contextPath + '/register/register'
+    			render view: 'registration', model: [postUrl: postUrl, message: message, 
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
+    		}
+    		else if (params.password.size() < 6) {
+    			String message = "The password must be at least 6 characters long"
+    			String passwordspanclass = "ion-close form-control-feedback"
+                String password2spanclass = "ion-close form-control-feedback"
+                String postUrl = request.contextPath + '/register/register'
+    			render view: 'registration', model: [postUrl: postUrl, message: message, 
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
+    		}
+    		else if (params.password != params.password2) {
+                String message = "The passwords need to match"
                 String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
                 String postUrl = request.contextPath + '/register/register'
@@ -88,7 +104,7 @@ class RegisterController {
 			    UserRole.removeAll(user)
 			    
 			    Cookie cookie = new Cookie("myCookie",username)
-				cookie.maxAge = 100
+				cookie.maxAge = 30
 				response.addCookie(cookie)
 			    
 			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
@@ -234,8 +250,13 @@ class RegisterController {
     
     String username = g.cookie(name: 'myCookie')
 
-	flash.message = username
-    redirect(uri: '/login/auth')
+	User userInstance = User.findByUsername(username)
+	
+	userInstance.enabled = true
+	
+	userInstance.save flush: true
+	
+    render view: 'success'
   }
   
   def error() {
