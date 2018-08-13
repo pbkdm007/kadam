@@ -167,7 +167,6 @@ class RegisterController {
         
         tempparams.put("email", params.username)
         
-        String txn = "abcd";
         String hash = "";
         String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
         String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5";
@@ -210,7 +209,7 @@ class RegisterController {
     	render view: 'payuform', model: [tempparams: values]
     }
   
-  /** Show the login page. */
+  /** Show the register page. */
   def show() {
 
     /** Check if anonymous access is enabled, to avoid login 
@@ -232,7 +231,7 @@ class RegisterController {
     String username = g.cookie(name: 'myCookie')
 
 	flash.message = username
-    render view: 'auth'
+    redirect(uri: '/login/auth')
   }
   
   def error() {
