@@ -46,7 +46,11 @@ class RegisterController {
     
     if(empty(username))
     {
-    	return
+      String message = "Please enter valid username."
+      String usernamespanclass = "ion-close form-control-feedback"
+      String postUrl = request.contextPath + '/register/register'
+      render view: 'registration', model: [postUrl: postUrl, message: message, 
+      usernamespanclass: usernamespanclass]
     }
 
     if (User.findByUsername(username)) {

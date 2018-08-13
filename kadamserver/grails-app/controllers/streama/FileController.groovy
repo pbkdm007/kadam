@@ -254,9 +254,10 @@ class FileController {
       dirPath = localPath.resolve( uploadService.localPath + path).toAbsolutePath()
     }
 
+	String tmppath = uploadService.localPath
     if (!dirPath.startsWith(localPath)) {
       result.code = "FileNotInLocalPath"
-      result.message = dirPath + " " + uploadService.localPath + "The video file must be contained in the Local Video Files setting."
+      result.message = dirPath + " " + tmppath + "The video file must be contained in the Local Video Files setting."
       response.setStatus(NOT_ACCEPTABLE.value)
       respond result
       return
