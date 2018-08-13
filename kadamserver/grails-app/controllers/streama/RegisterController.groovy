@@ -44,7 +44,7 @@ class RegisterController {
     def isInvite = true
     def result = [:]
     
-    if(empty(username))
+    if(empty(params.username))
     {
       String message = "Please enter valid username."
       String usernamespanclass = "ion-close form-control-feedback"
@@ -60,7 +60,7 @@ class RegisterController {
       render view: 'registration', model: [postUrl: postUrl, message: message, 
       usernamespanclass: usernamespanclass]
     } else {
-    		if (empty(params.password)) {
+    		if (empty(params.password) || empty(params.password2)) {
     			String message = "The password can not be empty"
     			String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
