@@ -256,7 +256,7 @@ class FileController {
 
     if (!dirPath.startsWith(localPath)) {
       result.code = "FileNotInLocalPath"
-      result.message = "The video file must be contained in the Local Video Files setting."
+      result.message = dirPath + " " + localPath + "The video file must be contained in the Local Video Files setting."
       response.setStatus(NOT_ACCEPTABLE.value)
       respond result
       return
