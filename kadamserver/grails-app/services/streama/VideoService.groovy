@@ -60,8 +60,9 @@ class VideoService {
     // Check that the given file path is contained in the local files directory
     def localPath = Paths.get(uploadService.localPath)
     def givenPath = Paths.get(params.localFile).toAbsolutePath()
+    String tmppath = uploadService.localPath
     if (!givenPath.startsWith(localPath)) {
-      result.message = givenPath.toString() + " " + uploadService.localPath + "The video file must be contained in the Local Video Files setting."
+      result.message = givenPath.toString() + " " + tmppath + " " + "The video file must be contained in the Local Video Files setting."
       result.error = true
       result.statusCode = NOT_ACCEPTABLE.value
       return result
