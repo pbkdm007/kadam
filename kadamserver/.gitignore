@@ -54,3 +54,5 @@
 /.sass-cache
 /.sass-work
 /bin/
+
+.env
