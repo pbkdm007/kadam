@@ -1,5 +1,6 @@
 package streama;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;    
 import javax.mail.*;    
 import javax.mail.internet.*;
@@ -7,7 +8,7 @@ import javax.mail.internet.*;
 public class MailTest {
 	public static void main(String[] args) {    
 	     //from,password,to,subject,message  
-	     Mailer.send("pbkdm007@gmail.com","teggnpmpujpjxyes","pbkdm007@gmail.com","hello javatpoint","How r u?");  
+	     Mailer.send("noreply.kadam@gmail.com","kadam2018","pbkdm007@gmail.com","hello javatpoint","How r u?");  
 	     //change from, password and to  
 	 }
 }
@@ -35,13 +36,11 @@ class Mailer{
            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
            message.setSubject(sub);    
            message.setText(msg);
-           InternetAddress[] ia = new InternetAddress[1];
-           ia[0]=new InternetAddress("noreply@kadam.in");
-           message.addFrom(ia);
+           message.setFrom(new InternetAddress("kadam@email.com", "Kadam"));
            //send message  
            Transport.send(message);    
            System.out.println("message sent successfully");    
-          } catch (MessagingException e) {throw new RuntimeException(e);}    
+          } catch (MessagingException | UnsupportedEncodingException e) {throw new RuntimeException(e);}    
              
     }  
 }

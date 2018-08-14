@@ -107,7 +107,6 @@ class UserController {
       try {
         mailService.sendMail {
           to userInstance.username
-          from "noreply@kadam"
           subject "You have been invited!"
           body(view: "/mail/userInvite", model: [user: userInstance])
         }
