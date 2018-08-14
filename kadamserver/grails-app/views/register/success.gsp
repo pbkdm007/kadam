@@ -16,7 +16,6 @@
 	.center {
     margin: auto;
     width: 60%;
-    border: 3px solid #73AD21;
     padding: 10px;
 }
 	</style>
@@ -35,8 +34,8 @@
   <g:cssBackgroundSetting selector=".login-page" setting="${Settings.findByName('loginBackground').value}"></g:cssBackgroundSetting>
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
-      <g:imgSetting class="auth-logo center"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner center'>
+      <g:imgSetting class="center"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
+			<div class='center'>
 		Registration Successful!
 		<g:link controller="login" action="auth">Login & Enjoy</g:link>
       </div>
