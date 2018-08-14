@@ -29,9 +29,13 @@
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='modal-body'>
+			<div class='inner'>
+			<form class='cssform form-horizontal' autocomplete='off'>
+			<div class="form-group">
 		Registration Successful!
 		<g:link controller="login" action="auth">Login & Enjoy</g:link>
+		</div>
+		</form>
       </div>
     </div>
     <div class="page-container-push"></div>
@@ -45,9 +49,6 @@
 
   <script type='text/javascript'>
     <!--
-    (function() {
-      document.forms['registrationForm'].elements['username'].focus();
-    })();
 
     angular.module('streama.translations').controller('authController', function ($translate) {
       var sessionExpired = ${params.sessionExpired?"true":"false"};

@@ -155,6 +155,12 @@ bootRun {
 task stage() {
     dependsOn clean, war
 }
+tasks.stage.doLast() {
+    delete fileTree(dir: "build/distributions")
+    delete fileTree(dir: "build/assetCompile")
+    delete fileTree(dir: "build/distributions")
+    delete fileTree(dir: "build/libs", exclude: "*.war")
+}
 war.mustRunAfter clean
 
 task copyToLib(type: Copy) {
@@ -165,10 +171,3 @@ task copyToLib(type: Copy) {
 }
 
 stage.dependsOn(copyToLib)
-
-tasks.stage.doLast() {
-    delete fileTree(dir: "build/distributions")
-    delete fileTree(dir: "build/assetCompile")
-    delete fileTree(dir: "build/distributions")
-    delete fileTree(dir: "build/libs", exclude: "*.war")
-}

@@ -101,9 +101,9 @@
         </div>
             <div class="col-sm-4">
           <select name="amount" class="form-control">
-		  <option value="100">1 month plan - 100</option>
-		  <option value="500">6 month plan - 500</option>
-		  <option value="1000">1 year plan - 1000</option>
+		  <option value="100">1 month plan - 100 Rs</option>
+		  <option value="500">6 month plan - 500 Rs</option>
+		  <option value="1000">1 year plan - 1000 Rs</option>
 		  </select>
 		  </div>
           </div>
