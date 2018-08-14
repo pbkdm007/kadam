@@ -12,6 +12,13 @@
 	[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 		display: none !important;
 	}
+	
+	.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
 	</style>
 
 	<asset:stylesheet src="vendor.css"/>
@@ -28,14 +35,10 @@
   <g:cssBackgroundSetting selector=".login-page" setting="${Settings.findByName('loginBackground').value}"></g:cssBackgroundSetting>
 	<div class="page-container login-page">
     <div id='register' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
-      <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner'>
-			<form class='cssform form-horizontal' autocomplete='off'>
-			<div class="form-group">
+      <g:imgSetting class="auth-logo center"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
+			<div class='inner center'>
 		Registration Successful!
 		<g:link controller="login" action="auth">Login & Enjoy</g:link>
-		</div>
-		</form>
       </div>
     </div>
     <div class="page-container-push"></div>
