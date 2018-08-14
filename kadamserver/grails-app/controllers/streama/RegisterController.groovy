@@ -104,7 +104,7 @@ class RegisterController {
 			    UserRole.removeAll(user)
 			    
 			    Cookie cookie = new Cookie("myCookie",username)
-				cookie.maxAge = 30
+				cookie.maxAge = -1
 				response.addCookie(cookie)
 			    
 			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
