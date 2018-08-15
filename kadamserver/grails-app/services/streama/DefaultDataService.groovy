@@ -51,7 +51,7 @@ class DefaultDataService {
                 'The default so far has been /data/kadam. Remember: if you change this path, copy all the files (that were previously added) into the new directory.',
             settingsType: 'string',
             required: true,
-            value: '/videos'
+            value: '/app/videos'
         ],
         [
             settingsKey: 'TheMovieDB API key',
@@ -90,7 +90,7 @@ class DefaultDataService {
             description: 'If you already have a directory with your videos, put it here and you will be able to choose them when creating movies or TV shows.',
             settingsType: 'string',
             required: false,
-            value: '/videos'
+            value: '/app/videos'
         ],
         [
             settingsKey: 'First Time Login Info',
