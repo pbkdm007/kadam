@@ -44,7 +44,7 @@
 
           <div class="play-text">
             <h4>Continue "<span ng-bind="::(viewingStatus.video.title || viewingStatus.video.show.name)"></span>"</h4>
-            <button class=" btn btn-secondary btn-xss complete-watching" ng-click="vm.markCompleted(viewingStatus)">
+            <button class=" btn btn-primary btn-xss complete-watching" ng-click="vm.markCompleted(viewingStatus)">
               {{'DASHBOARD.MARK_COMPLETED' | translate}}</button>
             <p ng-show="viewingStatus.video.isEpisode"><span ng-bind="::viewingStatus.video.episodeString"></span></p>
           </div>

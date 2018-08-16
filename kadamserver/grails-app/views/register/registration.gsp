@@ -48,58 +48,58 @@
     </legend>
     
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">Username</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="email" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}"/>
               <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>
 
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">{{'LOGIN.PASSWORD' | translate}}</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}"/>
               <span class="${passwordspanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">{{'PROFIlE.REPEAT_PASS' | translate}}</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}"/>
               <span class="${password2spanclass}" aria-hidden="true"></span>
             </div>
           </div>
           
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="text" name='firstname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}"/>
             </div>
           </div>
           
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">Phone</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="tel" name='phone' class="form-control" placeholder="Phone"/>
             </div>
           </div>
           
           <div class="form-group">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
           <label class="control-label">Select Plan</label>
         </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
           <select name="amount" class="form-control">
 		  <option value="100">1 month plan - 100 Rs</option>
 		  <option value="500">6 month plan - 500 Rs</option>

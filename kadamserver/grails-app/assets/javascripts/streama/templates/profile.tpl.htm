@@ -1,7 +1,7 @@
 <div class="profile">
   <div class="profile-heading">
     <div class="btn-group pull-right">
-        <button type="button" class="btn btn-secondary" ng-click="toggleChangePassword()" ng-if="!changePasswordIsActive">{{'CHANGE_PASSWORD' | translate}}</button>
+        <button type="button" class="btn btn-primary" ng-click="toggleChangePassword()" ng-if="!changePasswordIsActive">{{'CHANGE_PASSWORD' | translate}}</button>
     </div>
     <h1>
       <i class="ion-ios-arrow-thin-left" ng-if="changePasswordIsActive" ng-click="toggleChangePassword()"></i>
@@ -122,7 +122,7 @@
       <hr/>
 
       <div class="btn-group pull-right">
-        <button type="button" class="btn btn-secondary" ng-disabled="passwordsInvalid" ng-click="saveNewPassword()">
+        <button type="button" class="btn btn-primary" ng-disabled="passwordsInvalid" ng-click="saveNewPassword()">
           {{'PROFIlE.SAVE_PASS' | translate}}
         </button>
       </div>

@@ -12,7 +12,7 @@
   <h3>${message}</h3>
 
   <br/><br/>
-  <g:link uri="/" class="btn btn-secondary">Return to Dashboard</g:link>
+  <g:link uri="/" class="btn btn-primary">Return to Dashboard</g:link>
 </div>
 
 

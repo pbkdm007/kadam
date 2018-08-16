@@ -29,9 +29,10 @@
 	<div class="page-container login-page">
     <div id='login' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
-			<div class='inner'>
+			<div class='inner'><center>
 		Registration Successful!
 		<g:link controller="login" action="auth">Login & Enjoy</g:link>
+		</center>
       </div>
     </div>
     <div class="page-container-push"></div>
