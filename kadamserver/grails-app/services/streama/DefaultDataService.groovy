@@ -110,7 +110,7 @@ class DefaultDataService {
             name: 'show_version_num',
             description: 'Should the Kadam version number be shown in the header of the application',
             settingsType: 'boolean',
-            value: 'true'
+            value: 'false'
         ],
         [
             settingsKey: 'Logo',
