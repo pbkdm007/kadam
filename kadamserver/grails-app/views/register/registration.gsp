@@ -24,7 +24,7 @@
 	</script>
 </head>
 
-<body style="min-height:100%;">
+<body style="overflow:hidden;">
   <g:cssBackgroundSetting selector=".login-page" setting="${Settings.findByName('loginBackground').value}"></g:cssBackgroundSetting>
 	<div class="page-container login-page">
     <div id='login' ng-app="streama.translations" class="ng-cloak" ng-controller="authController">
