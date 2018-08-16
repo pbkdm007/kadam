@@ -134,7 +134,7 @@ class DefaultDataService {
           description: 'Upload your custom login background',
           settingsType: 'fileUpload',
           value: '/assets/bg.jpg',
-          defaultValue: '/assets/bg.jpg'
+          defaultValue: '/assets/bg.png'
         ],
         [
             settingsKey: 'Kadam title',
