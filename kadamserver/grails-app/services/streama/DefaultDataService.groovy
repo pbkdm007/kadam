@@ -126,7 +126,7 @@ class DefaultDataService {
             description: 'Upload your custom Favicon here. For most compatibility, use 16x16 .ico file',
             settingsType: 'fileUpload',
             value: '/assets/favicon.ico',
-            defaultValue: '/assets/favicon.ico'
+            defaultValue: '/assets/favicon.png'
         ],
         [
           settingsKey: 'loginBG',
