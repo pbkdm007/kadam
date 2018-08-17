@@ -9,6 +9,7 @@ class User {
 
 	Date dateCreated
 	Date lastUpdated
+	Date expiryDate
   boolean deleted = false
 
 	String username

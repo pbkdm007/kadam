@@ -251,8 +251,16 @@ class UserController {
   }
 
   def loginTarget() {
+  	def user = springSecurityService.currentUser
+  	Date now = new Date()
+  	if(user.expiryDate.after(now)) {
     userActivityService.createActivityEntry(request, 'login')
     redirect(uri: '/')
+    }
+    else {
+    flash.message = "Your account is expired."
+    redirect(uri: '/login/auth')
+    }
   }
 
 }

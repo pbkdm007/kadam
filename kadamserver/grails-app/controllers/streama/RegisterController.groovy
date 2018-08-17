@@ -254,6 +254,24 @@ class RegisterController {
 	
 	userInstance.enabled = true
 	
+	String amount = params.amount
+	
+	Calendar now = Calendar.getInstance()
+	
+	if("100".equals(amount)) {
+		now.add(Calendar.MONTH,1)
+	} else if("500".equals(amount)) {
+		now.add(Calendar.MONTH,6)
+	} else if("1000".equals(amount)) {
+		now.add(Calendar.MONTH,12)
+	} else {
+		userInstance.enabled = false
+	}
+	
+	Date expiryDate = now.getTime()
+	
+	userInstance.expiryDate = expiryDate
+	
 	userInstance.save flush: true
 	
     render view: 'success'
