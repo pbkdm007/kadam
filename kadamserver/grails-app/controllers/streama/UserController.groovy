@@ -253,7 +253,7 @@ class UserController {
   def loginTarget() {
   	def user = springSecurityService.currentUser
   	Date now = new Date()
-  	if(user.expiryDate.after(now)) {
+  	if(user.expiryDate==null||user.expiryDate.after(now)) {
     userActivityService.createActivityEntry(request, 'login')
     redirect(uri: '/')
     }

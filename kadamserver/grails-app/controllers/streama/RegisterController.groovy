@@ -274,7 +274,7 @@ class RegisterController {
 	
 	userInstance.save flush: true
 	
-    render view: 'success'
+    render view: 'success' , params:params
   }
   
   def error() {
