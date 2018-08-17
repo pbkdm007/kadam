@@ -259,7 +259,7 @@ class UserController {
     }
     else {
     flash.message = "Your account is expired."
-    redirect(uri: '/login/auth')
+    redirect(uri: '/j_spring_security_logout')
     }
   }
 
