@@ -258,11 +258,11 @@ class RegisterController {
 	
 	Calendar now = Calendar.getInstance()
 	
-	if("100".equals(amount)) {
+	if("100.00".equals(amount)) {
 		now.add(Calendar.MONTH,1)
-	} else if("500".equals(amount)) {
+	} else if("500.00".equals(amount)) {
 		now.add(Calendar.MONTH,6)
-	} else if("1000".equals(amount)) {
+	} else if("1000.00".equals(amount)) {
 		now.add(Calendar.MONTH,12)
 	} else {
 		userInstance.enabled = false
@@ -274,7 +274,7 @@ class RegisterController {
 	
 	userInstance.save flush: true
 	
-    render view: 'success' , params:params
+    render view: 'success'
   }
   
   def error() {
