@@ -261,11 +261,11 @@ class RegisterController {
   }
   
   def payorrenew() {
-  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
+  	/*if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
        String message = "The selected plan is invalid"
        String postUrl = request.contextPath + '/register/register'
        render view: 'registration', model: [postUrl: postUrl, message: message]
-    }
+    }*/
   	def username = params.username
     Cookie cookie = new Cookie("myCookie",username)
 	cookie.maxAge = -1
