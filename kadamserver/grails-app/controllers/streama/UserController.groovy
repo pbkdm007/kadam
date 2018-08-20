@@ -7,6 +7,8 @@ import static java.util.UUID.randomUUID
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+import javax.servlet.http.HttpSession
+
 @Transactional(readOnly = true)
 class UserController {
 
