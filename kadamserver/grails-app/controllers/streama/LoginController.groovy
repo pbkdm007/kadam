@@ -79,12 +79,31 @@ class LoginController {
       return
     }
 
-    String postUrl = request.contextPath + conf.apf.filterProcessesUrl
+    //String postUrl = request.contextPath + conf.apf.filterProcessesUrl
+    String postUrl = request.contextPath + '/login/validate'
     render view: 'auth', model: [postUrl: postUrl,
                                  rememberMeParameter: conf.rememberMe.parameter,
                                  usernameParameter: conf.apf.usernameParameter,
                                  passwordParameter: conf.apf.passwordParameter,
                                  gspLayout: conf.gsp.layoutAuth]
+  }
+  
+  def validate() {
+  	if(params.username==null||"".equals(params.username.trim()))
+    {
+    	flash.message = "Please enter valid username"
+    } else {
+    	User user = User.findByUsername(username)
+    	Date now = new Date()
+  		if(user.expiryDate==null||user.expiryDate.after(now)) {
+  			redirect action: 'authenticate', params: params
+  		} else {
+  			flash.message = "Your account is expired."
+			String postUrl = request.contextPath + '/register/payorrenew'
+    		render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
+    		firstname: firstname, phone: phone]
+  		}
+    }
   }
 
   /** The redirect action for Ajax requests. */

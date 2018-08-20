@@ -260,7 +260,7 @@ class RegisterController {
     /** redirect(uri: '/#/register') */
   }
   
-  def showexpired(String username, String firstname, String phone) {
+  def showexpired() {
 
 	flash.message = "Your account is expired."
 	String postUrl = request.contextPath + '/register/payorrenew'
