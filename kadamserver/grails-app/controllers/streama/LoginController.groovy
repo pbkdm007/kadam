@@ -96,9 +96,12 @@ class LoginController {
     	User user = User.findByUsername(params.username)
     	Date now = new Date()
   		if(user.expiryDate==null||user.expiryDate.after(now)) {
-  			redirect action: 'authenticate', params: params
+  			redirect action: 'authenticate', params: [username: user.username, password: user.password, remember_me: on]
   		} else {
   			flash.message = "Your account is expired."
+  			String username = user.username
+    		String firstname = user.fullName
+    		String phone = user.phone
 			String postUrl = request.contextPath + '/register/payorrenew'
     		render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
     		firstname: firstname, phone: phone]
