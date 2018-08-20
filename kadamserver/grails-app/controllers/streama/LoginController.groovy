@@ -93,7 +93,7 @@ class LoginController {
     {
     	flash.message = "Please enter valid username"
     } else {
-    	User user = User.findByUsername(username)
+    	User user = User.findByUsername(params.username)
     	Date now = new Date()
   		if(user.expiryDate==null||user.expiryDate.after(now)) {
   			redirect action: 'authenticate', params: params
