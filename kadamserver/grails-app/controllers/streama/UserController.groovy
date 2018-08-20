@@ -261,18 +261,8 @@ class UserController {
     redirect(uri: '/')
     }
     else {
-    String username = user.username
-    String firstname = user.fullName
-    String phone = user.phone
-    SecurityContextHolder.clearContext();
-
-      HttpSession session = request.getSession(false);
-      if (session != null) {
-        session.invalidate();
-      }
-
-    redirect action: 'showexpired', controller: 'register', params: [username: username, 
-    firstname: firstname, phone: phone]
+    user.accountExpired = true
+    redirect uri: '/logoff'
     }
   }
   
