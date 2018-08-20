@@ -262,6 +262,7 @@ class UserController {
     }
     else {
     user.accountExpired = true
+    user.save flush: true
     redirect uri: '/logoff'
     }
   }
