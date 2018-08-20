@@ -31,15 +31,14 @@
       <g:imgSetting class="auth-logo"  setting="${Settings.findByName('logo').value}" alt="${streama.Settings.findByName('title').value} Logo"></g:imgSetting>
 			<div class='inner'>
 
-      <g:if test='${message}'>
-      <div class="panel panel-danger">
-			  <div class='panel-body'><font color="#e74c3c">${message}</font></div>
-			  </div>
+      <g:if test='${flash.message}'>
+			  <div class='login_message'>${flash.message}</div>
 			</g:if>
 
-        <form action='${postUrl}' method='POST' id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
-	<legend>
-      Register
+        <form action='${postUrl}' method='POST' id='loginForm' class='cssform form-horizontal' autocomplete='off'>
+
+          <legend>
+      Pay/Renew
       <div class="spinner" ng-show="loading">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
@@ -47,48 +46,21 @@
       </div>
     </legend>
     
-    <div class="${hasusernameclass}">
           <div class="form-group">
           <div class="col-sm-4">
           <label class="control-label">Username</label>
         </div>
             <div class="col-sm-5">
-              <input type="email" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}"/>
-              <span class="${usernamespanclass}" aria-hidden="true"></span>
+              <input type="email" name="username" class="form-control" value="${username}" disabled/>
             </div>
-          </div>
           </div>
 
-		<div class="${haspasswordclass}">
-          <div class="form-group">
-          <div class="col-sm-4">
-          <label class="control-label">{{'LOGIN.PASSWORD' | translate}}</label>
-        </div>
-            <div class="col-sm-5">
-              <input type="password" name='password' class="form-control" placeholder="{{'LOGIN.PASSWORD' | translate}}"/>
-              <span class="${passwordspanclass}" aria-hidden="true"></span>
-            </div>
-          </div>
-          </div>
-          
-          <div class="${haspasswordclass}">
-          <div class="form-group">
-          <div class="col-sm-4">
-          <label class="control-label">{{'PROFIlE.REPEAT_PASS' | translate}}</label>
-        </div>
-            <div class="col-sm-5">
-              <input type="password" name='password2' class="form-control" placeholder="{{'PROFIlE.REPEAT_PASS' | translate}}"/>
-              <span class="${password2spanclass}" aria-hidden="true"></span>
-            </div>
-          </div>
-          </div>
-          
           <div class="form-group">
           <div class="col-sm-4">
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
         </div>
             <div class="col-sm-5">
-              <input type="text" name='firstname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}"/>
+              <input type="text" name='firstname' class="form-control" value="${firstname}" disabled/>
             </div>
           </div>
           
@@ -97,7 +69,7 @@
           <label class="control-label">Phone</label>
         </div>
             <div class="col-sm-5">
-              <input type="tel" name='phone' class="form-control" placeholder="Phone"/>
+              <input type="tel" name='phone' class="form-control" value="${phone}" disabled/>
             </div>
           </div>
           
@@ -127,7 +99,7 @@
           
           <span>
 
-            <button class="btn btn-primary pull-right" style="background: #f48729; border-color: #f48729; opacity: 0.53; filter: Alpha(opacity=53);">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
+			<button class="btn btn-primary pull-right" style="background: #f48729; border-color: #f48729; opacity: 0.53; filter: Alpha(opacity=53);">Pay/Renew &nbsp; <i class="ion-chevron-right"></i></button></span>
         </form>
       </div>
     </div>
@@ -143,7 +115,7 @@
   <script type='text/javascript'>
     <!--
     (function() {
-      document.forms['registrationForm'].elements['username'].focus();
+      document.forms['loginForm'].elements['username'].focus();
     })();
 
     angular.module('streama.translations').controller('authController', function ($translate) {

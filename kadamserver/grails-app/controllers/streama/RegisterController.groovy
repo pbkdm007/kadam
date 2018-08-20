@@ -48,50 +48,66 @@ class RegisterController {
     {
       String message = "Please enter valid username."
       String usernamespanclass = "ion-close form-control-feedback"
+      String hasusernameclass = "has-error has-feedback"
       String postUrl = request.contextPath + '/register/register'
       render view: 'registration', model: [postUrl: postUrl, message: message, 
-      usernamespanclass: usernamespanclass]
+      usernamespanclass: usernamespanclass, hasusernameclass: hasusernameclass]
     }
 
     if (User.findByUsername(username)) {
       String message = "Username already exists."
       String usernamespanclass = "ion-close form-control-feedback"
+      String hasusernameclass = "has-error has-feedback"
       String postUrl = request.contextPath + '/register/register'
       render view: 'registration', model: [postUrl: postUrl, message: message, 
-      usernamespanclass: usernamespanclass]
+      usernamespanclass: usernamespanclass, hasusernameclass: hasusernameclass]
     } else {
+    String hasusernameclass = "has-success has-feedback"
     		if (empty(params.password) || empty(params.password2)) {
     			String message = "The password can not be empty"
     			String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
+                String haspasswordclass = "has-error has-feedback"
                 String postUrl = request.contextPath + '/register/register'
     			render view: 'registration', model: [postUrl: postUrl, message: message, 
-    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass, 
+    			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
     		}
     		else if (params.password.size() < 6) {
     			String message = "The password must be at least 6 characters long"
     			String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
+                String haspasswordclass = "has-error has-feedback"
                 String postUrl = request.contextPath + '/register/register'
     			render view: 'registration', model: [postUrl: postUrl, message: message, 
-    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass, 
+    			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
     		}
     		else if (params.password != params.password2) {
                 String message = "The passwords need to match"
                 String passwordspanclass = "ion-close form-control-feedback"
                 String password2spanclass = "ion-close form-control-feedback"
+                String haspasswordclass = "has-error has-feedback"
                 String postUrl = request.contextPath + '/register/register'
     			render view: 'registration', model: [postUrl: postUrl, message: message, 
-    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass]
+    			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass, 
+    			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
+            }
+            else if(params.amount!=100 && params.amount!=500 && params.amount!=1000) {
+            	String message = "The selected plan is invalid"
+            	String postUrl = request.contextPath + '/register/register'
+    			render view: 'registration', model: [postUrl: postUrl, message: message]
             }
             else {
             	String usernamespanclass = "ion-checkmark form-control-feedback"
             	String passwordspanclass = "ion-checkmark form-control-feedback"
             	String password2spanclass = "ion-checkmark form-control-feedback"
+            	String haspasswordclass = "has-success has-feedback"
             	User user = new User(
                         username: params.username,
                         password: params.password,
-                        fullName: params.firstname
+                        fullName: params.firstname,
+                        phone: params.phone
                 )
                 user.validate()
 			    if (user.hasErrors()) {
@@ -244,6 +260,19 @@ class RegisterController {
     /** redirect(uri: '/#/register') */
   }
   
+  def payorrenew() {
+  	if(params.amount!=100 && params.amount!=500 && params.amount!=1000) {
+       String message = "The selected plan is invalid"
+       String postUrl = request.contextPath + '/register/register'
+       render view: 'registration', model: [postUrl: postUrl, message: message]
+    }
+  	def username = params.username
+    Cookie cookie = new Cookie("myCookie",username)
+	cookie.maxAge = -1
+	response.addCookie(cookie)
+	pay()
+  }
+  
   def success() {
 
     def conf = getConf()
@@ -271,6 +300,7 @@ class RegisterController {
 	Date expiryDate = now.getTime()
 	
 	userInstance.expiryDate = expiryDate
+	userInstance.amountPaid = amount
 	
 	userInstance.save flush: true
 	

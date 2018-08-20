@@ -258,9 +258,27 @@ class UserController {
     redirect(uri: '/')
     }
     else {
-    flash.message = "Your account is expired."
-    redirect(uri: '/logoff')
+    String username = user.username
+    String firstname = user.fullName
+    String phone = user.phone
+    SecurityContextHolder.clearContext();
+
+      HttpSession session = request.getSession(false);
+      if (session != null) {
+        session.invalidate();
+      }
+
+    chain(action: showexpired, model: [username: username, firstname: firstname, 
+    phone: phone])
     }
+  }
+  
+  def showexpired() {
+
+	flash.message = "Your account is expired."
+	String postUrl = request.contextPath + '/register/payorrenew'
+    render view: 'payorrenew', model: [postUrl: postUrl]
+    
   }
 
 }

@@ -24,6 +24,8 @@ class User {
 	String uuid
 	String language = 'en'
   String fullName
+  String phone
+  String amountPaid
   Integer amountOfMediaEntries
 
 	static transients = ['springSecurityService']
