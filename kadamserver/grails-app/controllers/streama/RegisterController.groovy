@@ -260,12 +260,21 @@ class RegisterController {
     /** redirect(uri: '/#/register') */
   }
   
+  def showexpired(String username, String firstname, String phone) {
+
+	flash.message = "Your account is expired."
+	String postUrl = request.contextPath + '/register/payorrenew'
+    render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
+    firstname: firstname, phone: phone]
+    
+  }
+  
   def payorrenew() {
-  	/*if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
+  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
        String message = "The selected plan is invalid"
        String postUrl = request.contextPath + '/register/register'
        render view: 'registration', model: [postUrl: postUrl, message: message]
-    }*/
+    }
   	def username = params.username
     Cookie cookie = new Cookie("myCookie",username)
 	cookie.maxAge = -1

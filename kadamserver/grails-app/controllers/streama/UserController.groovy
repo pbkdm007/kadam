@@ -271,19 +271,11 @@ class UserController {
         session.invalidate();
       }
 
-    showexpired(username, firstname, phone)
+    redirect action: 'showexpired', controller: 'register', params: [username: username, 
+    firstname: firstname, phone: phone]
     }
   }
   
-  def showexpired(String username, String firstname, String phone) {
-
-	flash.message = "Your account is expired."
-	String postUrl = request.contextPath + '/register/payorrenew'
-    render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
-    firstname: firstname, phone: phone]
-    
-  }
-
 }
 
 
