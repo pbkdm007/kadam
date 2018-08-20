@@ -261,7 +261,7 @@ class RegisterController {
   }
   
   def payorrenew() {
-  	if(params.amount!=100 && params.amount!=500 && params.amount!=1000) {
+  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
        String message = "The selected plan is invalid"
        String postUrl = request.contextPath + '/register/register'
        render view: 'registration', model: [postUrl: postUrl, message: message]
