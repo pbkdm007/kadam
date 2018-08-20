@@ -8,6 +8,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 import javax.servlet.http.HttpSession
+import org.springframework.security.core.context.SecurityContextHolder
 
 @Transactional(readOnly = true)
 class UserController {
