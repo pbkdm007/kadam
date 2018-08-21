@@ -97,7 +97,7 @@ class LoginController {
     	Date now = new Date()
   		if(user.expiryDate==null||user.expiryDate.after(now)) {
   			redirect action: 'authenticate', params: [usernameParameter: params.username, 
-  			passwordParameter: params.password, rememberMeParameter: on]
+  			passwordParameter: params.password, rememberMeParameter: 'on']
   		} else {
   			flash.message = "Your account is expired."
   			String username = user.username
