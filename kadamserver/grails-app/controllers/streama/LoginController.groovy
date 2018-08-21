@@ -149,9 +149,7 @@ class LoginController {
       if (exception instanceof AccountExpiredException) {
         msg = message(code: 'springSecurity.errors.login.expired')
         
-        String username = g.cookie(name: 'myLoginCookie')
-
-		User userInstance = User.findByUsername(username)
+		User userInstance = springSecurityService.currentUser
     	String firstname = userInstance.fullName
     	String phone = userInstance.phone
         redirect action: 'showexpired', controller: 'register', params: [username: username, 
