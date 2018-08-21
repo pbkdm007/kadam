@@ -155,6 +155,7 @@ class LoginController {
     	String phone = userInstance.phone
         redirect action: 'showexpired', controller: 'register', params: [username: username, 
     	firstname: firstname, phone: phone]
+        return
       }
       else if (exception instanceof CredentialsExpiredException) {
         msg = message(code: 'springSecurity.errors.login.passwordExpired')
