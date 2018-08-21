@@ -7,8 +7,6 @@ import javax.servlet.http.Cookie
 
 class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
 
-   private static final EXCEPTION = new DeletedException()
-
    void check(UserDetails user) {
 
       // do the standard checks
@@ -17,7 +15,7 @@ class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
       // then the custom check(s)
       if (user.deleted) {
          log.debug 'User account is deleted'
-         throw EXCEPTION
+         throw new LockedException()
       }
       
       User userinstance = User.findByUsername(user.username)
@@ -31,14 +29,4 @@ class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
   	  }
    }
 
-   static class DeletedException extends AccountStatusException {
-      LockedException() {
-         super('User account is deleted')
-      }
-
-      // avoid the unnnecessary cost
-      Throwable fillInStackTrace() {
-         this
-      }
-   }
 }
