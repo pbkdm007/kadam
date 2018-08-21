@@ -79,8 +79,8 @@ class LoginController {
       return
     }
 
-    //String postUrl = request.contextPath + conf.apf.filterProcessesUrl
-    String postUrl = request.contextPath + '/login/validate'
+    String postUrl = request.contextPath + conf.apf.filterProcessesUrl
+    //String postUrl = request.contextPath + '/login/validate'
     render view: 'auth', model: [postUrl: postUrl,
                                  rememberMeParameter: conf.rememberMe.parameter,
                                  usernameParameter: conf.apf.usernameParameter,
@@ -149,10 +149,12 @@ class LoginController {
       if (exception instanceof AccountExpiredException) {
         msg = message(code: 'springSecurity.errors.login.expired')
         
-        User user = User.findByUsername(params.username)
-        String username = user.username
-    	String firstname = user.fullName
-    	String phone = user.phone
+        String username = g.cookie(name: 'myLoginCookie')
+
+		User userInstance = User.findByUsername(username)
+        String username = userInstance.username
+    	String firstname = userInstance.fullName
+    	String phone = userInstance.phone
         redirect action: 'showexpired', controller: 'register', params: [username: username, 
     	firstname: firstname, phone: phone]
       }
