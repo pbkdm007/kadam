@@ -1,8 +1,8 @@
 package streama
 
 import grails.plugin.springsecurity.userdetails.DefaultPreAuthenticationChecks
-import org.springframework.security.authentication.AccountStatusException
 import org.springframework.security.authentication.AccountExpiredException
+import org.springframework.security.authentication.LockedException
 import javax.servlet.http.Cookie
 
 class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
