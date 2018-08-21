@@ -93,7 +93,7 @@ class RegisterController {
     			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass, 
     			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
             }
-            else if(params.amount!=100 && params.amount!=500 && params.amount!=1000) {
+            else if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
             	String message = "The selected plan is invalid"
             	String postUrl = request.contextPath + '/register/register'
     			render view: 'registration', model: [postUrl: postUrl, message: message]
