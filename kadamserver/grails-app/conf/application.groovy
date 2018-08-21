@@ -23,6 +23,7 @@ grails.plugin.springsecurity.rememberMe.alwaysRemember = true
 grails.plugin.springsecurity.rememberMe.key = 'streama_Rocks123!!RememberMe'
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/user/loginTarget"
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.apf.storeLastUsername=true
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
