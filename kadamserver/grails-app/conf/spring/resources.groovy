@@ -1,6 +1,6 @@
-import streama.MyPreAuthenticationChecks
+import streama.MyPostAuthenticationChecks
 
 // Place your Spring DSL code here
 beans = {
-preAuthenticationChecks(MyPreAuthenticationChecks)
+preAuthenticationChecks(MyPostAuthenticationChecks)
 }

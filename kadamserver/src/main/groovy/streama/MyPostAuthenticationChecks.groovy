@@ -6,7 +6,7 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.servlet.http.Cookie
 
-class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
+class MyPostAuthenticationChecks extends DefaultPostAuthenticationChecks {
 
    void check(UserDetails user) {
 
