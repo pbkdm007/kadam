@@ -152,7 +152,6 @@ class LoginController {
         String username = g.cookie(name: 'myLoginCookie')
 
 		User userInstance = User.findByUsername(username)
-        String username = userInstance.username
     	String firstname = userInstance.fullName
     	String phone = userInstance.phone
         redirect action: 'showexpired', controller: 'register', params: [username: username, 
