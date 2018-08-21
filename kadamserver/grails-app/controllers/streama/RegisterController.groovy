@@ -264,8 +264,8 @@ class RegisterController {
 
 	flash.message = "Your account is expired."
 	String postUrl = request.contextPath + '/register/payorrenew'
-    render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
-    firstname: firstname, phone: phone]
+    render view: 'payorrenew', model: [postUrl: postUrl, username: params.username, 
+    firstname: params.firstname, phone: params.phone]
     
   }
   
