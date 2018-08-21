@@ -1,6 +1,6 @@
 package streama
 
-import grails.plugin.springsecurity.userdetails.DefaultPreAuthenticationChecks
+import grails.plugin.springsecurity.userdetails.DefaultPostAuthenticationChecks
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.userdetails.UserDetails;
