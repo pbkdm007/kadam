@@ -1,19 +1,23 @@
 package streama
 
-import grails.plugin.springsecurity.userdetails.DefaultPostAuthenticationChecks
+import grails.plugin.springsecurity.userdetails.DefaultPreAuthenticationChecks
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.servlet.http.Cookie
 
-class MyPostAuthenticationChecks extends DefaultPostAuthenticationChecks {
+class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
 
    void check(UserDetails user) {
 
       // do the standard checks
       super.check user
       
-      User userinstance = User.findByUsername(user.getUsername())
+      User userinstance
+      
+      User.withTransaction {
+       userinstance = User.findByUsername(user.getUsername())
+      }
 
       // then the custom check(s)
       if (userinstance.deleted) {
