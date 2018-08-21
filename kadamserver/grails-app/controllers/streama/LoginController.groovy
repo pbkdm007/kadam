@@ -79,8 +79,8 @@ class LoginController {
       return
     }
 
-    String postUrl = request.contextPath + conf.apf.filterProcessesUrl
-    //String postUrl = request.contextPath + '/login/validate'
+    //String postUrl = request.contextPath + conf.apf.filterProcessesUrl
+    String postUrl = request.contextPath + '/login/validate'
     render view: 'auth', model: [postUrl: postUrl,
                                  rememberMeParameter: conf.rememberMe.parameter,
                                  usernameParameter: conf.apf.usernameParameter,
@@ -96,7 +96,8 @@ class LoginController {
     	User user = User.findByUsername(params.username)
     	Date now = new Date()
   		if(user.expiryDate==null||user.expiryDate.after(now)) {
-  			redirect action: 'authenticate', params: [username: user.username, password: user.password, remember_me: on]
+  			redirect action: 'authenticate', params: [conf.apf.usernameParameter: user.username, 
+  			conf.apf.passwordParameter: user.password, conf.rememberMe.parameter: on]
   		} else {
   			flash.message = "Your account is expired."
   			String username = user.username
