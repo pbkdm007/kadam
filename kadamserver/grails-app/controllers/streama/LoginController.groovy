@@ -96,8 +96,8 @@ class LoginController {
     	User user = User.findByUsername(params.username)
     	Date now = new Date()
   		if(user.expiryDate==null||user.expiryDate.after(now)) {
-  			redirect action: 'authenticate', params: [usernameParameter: params.username, 
-  			passwordParameter: springSecurityService.encodePassword(params.password), rememberMeParameter: 'on']
+  			redirect action: 'authenticate', params: [username: params.username, 
+  			password: springSecurityService.encodePassword(params.password), remember_me: 'on']
   		} else {
   			flash.message = "Your account is expired."
   			String username = user.username
