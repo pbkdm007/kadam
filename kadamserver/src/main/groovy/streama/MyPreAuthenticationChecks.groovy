@@ -3,10 +3,13 @@ package streama
 import grails.plugin.springsecurity.userdetails.DefaultPreAuthenticationChecks
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.LockedException
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails
 import javax.servlet.http.Cookie
+import org.springframework.context.support.MessageSourceAccessor
 
 class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
+
+MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor()
 
    void check(UserDetails user) {
 
@@ -26,8 +29,10 @@ class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
       }
       
       Date now = new Date()
-  	  if(userinstance.expiryDate==null||userinstance.expiryDate.after(now)) {
-  	  	throw new AccountExpiredException()
+  	  if(userinstance.expiryDate!=null||!userinstance.expiryDate.after(now)) {
+  	  	throw new AccountExpiredException(messages.getMessage(
+						"AbstractUserDetailsAuthenticationProvider.expired",
+						"User account has expired"))
   	  }
    }
 
