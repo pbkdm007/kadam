@@ -6,6 +6,7 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.userdetails.UserDetails
 import javax.servlet.http.Cookie
 import org.springframework.context.support.MessageSourceAccessor
+import org.springframework.security.core.SpringSecurityMessageSource
 
 class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
 
