@@ -12,14 +12,14 @@ class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
 
       // do the standard checks
       super.check user
+      
+      User userinstance = User.findByUsername(user.getUsername())
 
       // then the custom check(s)
-      if (user.deleted) {
+      if (userinstance.deleted) {
          log.debug 'User account is deleted'
          throw new LockedException()
       }
-      
-      User userinstance = User.findByUsername(user.username)
       
       Date now = new Date()
   	  if(userinstance.expiryDate==null||userinstance.expiryDate.after(now)) {
