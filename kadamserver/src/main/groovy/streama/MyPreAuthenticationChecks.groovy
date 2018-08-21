@@ -27,7 +27,7 @@ class MyPreAuthenticationChecks extends DefaultPreAuthenticationChecks {
       
       Date now = new Date()
   	  if(userinstance.expiryDate==null||userinstance.expiryDate.after(now)) {
-  	  	Cookie cookie = new Cookie("myLoginCookie",username)
+  	  	Cookie cookie = new Cookie("myLoginCookie",user.getUsername())
 		cookie.maxAge = -1
 		response.addCookie(cookie)
   	  	throw new AccountExpiredException()
