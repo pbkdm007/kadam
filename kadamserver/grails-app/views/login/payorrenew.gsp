@@ -51,7 +51,7 @@
           <label class="control-label">Username</label>
         </div>
             <div class="col-sm-5">
-              <input type="email" name="username" class="form-control" value="${username}" disabled/>
+              <input type="email" name="username" class="form-control" value="${username}"/>
             </div>
           </div>
 
@@ -60,7 +60,7 @@
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
         </div>
             <div class="col-sm-5">
-              <input type="text" name='firstname' class="form-control" value="${firstname}" disabled/>
+              <input type="text" name='firstname' class="form-control" value="${firstname}"/>
             </div>
           </div>
           
@@ -69,7 +69,7 @@
           <label class="control-label">Phone</label>
         </div>
             <div class="col-sm-5">
-              <input type="tel" name='phone' class="form-control" value="${phone}" disabled/>
+              <input type="tel" name='phone' class="form-control" value="${phone}"/>
             </div>
           </div>
           
