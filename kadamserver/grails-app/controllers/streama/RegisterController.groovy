@@ -44,6 +44,8 @@ class RegisterController {
     def isInvite = true
     def result = [:]
     
+    println username
+    
     if(username==null||"".equals(username.trim()))
     {
       String message = "Please enter valid username."
