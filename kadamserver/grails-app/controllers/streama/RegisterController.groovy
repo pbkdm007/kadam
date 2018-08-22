@@ -44,9 +44,7 @@ class RegisterController {
     def isInvite = true
     def result = [:]
     
-    println username
-    
-    if(username==null||"".equals(username.trim()))
+    if(empty(username))
     {
       String message = "Please enter valid username."
       String usernamespanclass = "ion-close form-control-feedback"
@@ -54,6 +52,7 @@ class RegisterController {
       String postUrl = request.contextPath + '/register/register'
       render view: 'registration', model: [postUrl: postUrl, message: message, 
       usernamespanclass: usernamespanclass, hasusernameclass: hasusernameclass]
+      return
     }
 
     if (User.findByUsername(username)) {
@@ -204,9 +203,6 @@ class RegisterController {
         }
         
         tempparams.put("email", params.username)
-        
-        println amount
-        println tempparams
         
         String hash = "";
         String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
