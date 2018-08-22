@@ -110,6 +110,15 @@ class LoginController {
   		}
     }
   }
+  
+  def showexpired(String username, String firstname, String phone) {
+
+	flash.message = "Your account is expired."
+	String postUrl = request.contextPath + '/register/payorrenew'
+    render view: 'payorrenew', model: [postUrl: postUrl, username: username, 
+    firstname: firstname, phone: phone]
+    
+  }
 
   /** The redirect action for Ajax requests. */
   def authAjax() {
@@ -153,8 +162,7 @@ class LoginController {
 		User userInstance = User.findByUsername(username)
     	String firstname = userInstance.fullName
     	String phone = userInstance.phone
-        redirect action: 'showexpired', controller: 'register', params: [username: username, 
-    	firstname: firstname, phone: phone]
+        showexpired(username, firstname, phone)
         return
       }
       else if (exception instanceof CredentialsExpiredException) {

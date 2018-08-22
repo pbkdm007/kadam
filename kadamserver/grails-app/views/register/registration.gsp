@@ -53,7 +53,7 @@
           <label class="control-label">Username</label>
         </div>
             <div class="col-sm-5">
-              <input type="email" name="username" class="form-control" placeholder="{{'LOGIN.USERNAME' | translate}}"/>
+              <input type="email" name="username" class="form-control" placeholder="Email"/>
               <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>

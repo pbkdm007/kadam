@@ -44,7 +44,7 @@ class RegisterController {
     def isInvite = true
     def result = [:]
     
-    if(empty(params.username))
+    if(username==null||"".equals(username.trim()))
     {
       String message = "Please enter valid username."
       String usernamespanclass = "ion-close form-control-feedback"
@@ -203,6 +203,9 @@ class RegisterController {
         
         tempparams.put("email", params.username)
         
+        println amount
+        println tempparams
+        
         String hash = "";
         String otherPostParamSeq = "phone|surl|furl|lastname|curl|address1|address2|city|state|country|zipcode|pg";
         String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5";
@@ -258,15 +261,6 @@ class RegisterController {
     render view: 'registration', model: [postUrl: postUrl]
     
     /** redirect(uri: '/#/register') */
-  }
-  
-  def showexpired() {
-
-	flash.message = "Your account is expired."
-	String postUrl = request.contextPath + '/register/payorrenew'
-    render view: 'payorrenew', model: [postUrl: postUrl, username: params.username, 
-    firstname: params.firstname, phone: params.phone]
-    
   }
   
   def payorrenew() {
