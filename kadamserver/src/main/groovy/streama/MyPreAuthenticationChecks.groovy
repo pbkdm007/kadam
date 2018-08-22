@@ -31,6 +31,10 @@ MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor()
       
       Date now = new Date()
   	  if(userinstance.expiryDate!=null && !userinstance.expiryDate.after(now)) {
+  	  	if(!userinstance.accountExpired) {
+  	  		userinstance.accountExpired = true
+    		userinstance.save flush: true
+    	}
   	  	throw new AccountExpiredException(messages.getMessage(
 						"AbstractUserDetailsAuthenticationProvider.expired",
 						"User account has expired"))

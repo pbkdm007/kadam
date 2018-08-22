@@ -7,9 +7,6 @@ import static java.util.UUID.randomUUID
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-import javax.servlet.http.HttpSession
-import org.springframework.security.core.context.SecurityContextHolder
-
 @Transactional(readOnly = true)
 class UserController {
 
@@ -254,19 +251,10 @@ class UserController {
   }
 
   def loginTarget() {
-  	def user = springSecurityService.currentUser
-  	Date now = new Date()
-  	if(user.expiryDate==null||user.expiryDate.after(now)) {
     userActivityService.createActivityEntry(request, 'login')
     redirect(uri: '/')
-    }
-    else {
-    user.accountExpired = true
-    user.save flush: true
-    redirect uri: '/logoff'
-    }
   }
-  
+
 }
 
 
