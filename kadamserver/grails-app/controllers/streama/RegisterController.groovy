@@ -304,6 +304,8 @@ class RegisterController {
 	
 	userInstance.expiryDate = expiryDate
 	userInstance.amountPaid = amount
+	userInstance.accountExpired = false
+	userInstance.enabled = true
 	
 	userInstance.save flush: true
 	
