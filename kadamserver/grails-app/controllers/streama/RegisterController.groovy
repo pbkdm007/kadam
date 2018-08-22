@@ -40,7 +40,7 @@ class RegisterController {
   def error
 
   def register() {
-	def username = params.username
+	String username = params.username
     def isInvite = true
     def result = [:]
     
