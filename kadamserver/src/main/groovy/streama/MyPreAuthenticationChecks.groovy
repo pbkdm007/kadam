@@ -21,7 +21,6 @@ MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor()
       
       User.withTransaction {
        userinstance = User.findByUsername(user.getUsername())
-      }
 
       // then the custom check(s)
       if (userinstance.deleted) {
@@ -39,6 +38,7 @@ MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor()
 						"AbstractUserDetailsAuthenticationProvider.expired",
 						"User account has expired"))
   	  }
+  	 }
    }
 
 }
