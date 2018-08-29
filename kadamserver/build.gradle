@@ -152,6 +152,10 @@ bootRun {
 	}
 }
 
+grails {
+  pathingJar = true
+}
+
 task stage() {
     dependsOn clean, war
 }
