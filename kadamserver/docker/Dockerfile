@@ -1,10 +1,10 @@
 FROM java:8-jre
-VOLUME /data
+
 EXPOSE 8080
-ENV ACTIVE_PROFILE=docker
+
+RUN mkdir /app
+
+ADD https://github.com/pkdm1989/kadamserver/releases/download/v1.0/root.war /app/root.war
 
 WORKDIR /app
-COPY /kadamserver/docker/entrypoint.sh entrypoint.sh
-COPY /kadamserver/build/libs/*.war kadam.war
-
-ENTRYPOINT ["sh", "entrypoint.sh"]
+CMD ["java", "-Dgrails.env=prod", "-jar", "root.war" ]
