@@ -68,7 +68,7 @@
               <li role="menuitem"><a ui-sref="help">{{'HELP_FAQ' | translate}}</a></li>
               <li role="menuitem"><a ui-sref="profile">{{'PROFILE_SETTINGS' | translate}}</a></li>
               <li class="divider"></li>
-              <li><g:link uri="/logoff">{{'LOGOUT' | translate}}</g:link></li>
+              <li><g:link uri="/logout">{{'LOGOUT' | translate}}</g:link></li>
             </ul>
           </div>
         </li>

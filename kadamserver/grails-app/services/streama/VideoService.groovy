@@ -126,7 +126,7 @@ class VideoService {
     def sort = params.sort
     def order = params.order
     def genreId = params.long('genreId')
-    def genreList = params.list('genre')*.toLong()
+    def genreList = params.list('genre')
 
     def tvShowQuery = TvShow.where{
       def tv1 = TvShow
