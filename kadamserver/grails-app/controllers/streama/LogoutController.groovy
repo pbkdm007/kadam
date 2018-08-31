@@ -11,13 +11,14 @@ import org.springframework.security.authentication.DisabledException
 import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.context.SecurityContext
 import org.springframework.security.web.WebAttributes
 
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
 
 @Secured('permitAll')
-class LoginController {
+class LogoutController {
 
   /** Dependency injection for the authenticationTrustResolver. */
   AuthenticationTrustResolver authenticationTrustResolver
