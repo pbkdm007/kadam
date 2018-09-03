@@ -89,7 +89,7 @@ class VideoService {
     def sort = params.sort
     def order = params.order
     def genreId = params.long('genreId')
-    def genreList = params.list('genre')2.toLong()
+    def genreList = params.list('genre')
 
     def movieQuery = Movie.where {
       deleted != true
@@ -107,7 +107,7 @@ class VideoService {
 
       if(genreList){
         genre{
-          id in genreList
+          id.toLong() in genreList
         }
       }
     }
@@ -126,7 +126,7 @@ class VideoService {
     def sort = params.sort
     def order = params.order
     def genreId = params.long('genreId')
-    def genreList = params.list('genre')2.toLong()
+    def genreList = params.list('genre')
 
     def tvShowQuery = TvShow.where{
       def tv1 = TvShow
@@ -153,7 +153,7 @@ class VideoService {
 
       if(genreList){
         genre{
-          id in genreList
+          id.toLong() in genreList
         }
       }
     }
