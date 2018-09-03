@@ -72,7 +72,7 @@ class LogoutController {
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
 		
-		//redirect action: 'auth', controller: 'login'
+		redirect action: 'auth', controller: 'login'
   }
 
   protected Authentication getAuthentication() {
