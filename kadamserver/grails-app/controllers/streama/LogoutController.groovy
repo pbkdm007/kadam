@@ -66,7 +66,7 @@ class LogoutController {
 
 		SecurityContextHolder.clearContext();
 		
-		redirect uri: /login/auth
+		redirect action: 'auth', controller: 'login'
   }
 
   protected Authentication getAuthentication() {
