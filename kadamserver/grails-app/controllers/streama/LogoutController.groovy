@@ -56,17 +56,22 @@ class LogoutController {
   /** Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise. */
   def index() {
 
-			HttpSession session = request.getSession(false);
-			if (session != null) {
-				session.invalidate();
-			}
+		/*HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}*/
 
-			SecurityContext context = SecurityContextHolder.getContext();
-			context.setAuthentication(null);
+		SecurityContext context = SecurityContextHolder.getContext();
+		//context.setAuthentication(null);
 
-		SecurityContextHolder.clearContext();
+		//SecurityContextHolder.clearContext();
 		
-		redirect action: 'auth', controller: 'login'
+		Authentication auth = context.getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+		
+		//redirect action: 'auth', controller: 'login'
   }
 
   protected Authentication getAuthentication() {
