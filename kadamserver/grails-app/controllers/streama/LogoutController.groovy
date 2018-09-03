@@ -58,7 +58,6 @@ class LogoutController {
 
 			HttpSession session = request.getSession(false);
 			if (session != null) {
-				logger.debug("Invalidating session: " + session.getId());
 				session.invalidate();
 			}
 
