@@ -168,7 +168,7 @@ class RegisterController {
 		String key = "";
         String salt = "haqtx6QnvO";
         String action1 = "";
-        String base_url = "https://sandboxsecure.payu.in";
+        String base_url = "https://test.payu.in";
         error = 0;
         String hashString = "";
         Enumeration paramNames = request.getParameterNames();
