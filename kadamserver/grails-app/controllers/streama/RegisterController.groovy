@@ -166,7 +166,7 @@ class RegisterController {
             {
         response.setContentType("text/html;charset=UTF-8");
 		String key = "";
-        String salt = "eCwWELxi";
+        String salt = "haqtx6QnvO";
         String action1 = "";
         String base_url = "https://sandboxsecure.payu.in";
         error = 0;
