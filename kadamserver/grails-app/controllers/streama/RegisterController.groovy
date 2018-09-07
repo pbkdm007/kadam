@@ -168,7 +168,7 @@ class RegisterController {
 		String key = "";
         String salt = "eCwWELxi";
         String action1 = "";
-        String base_url = "https://test.payu.in";
+        String base_url = "https://sandboxsecure.payu.in";
         error = 0;
         String hashString = "";
         Enumeration paramNames = request.getParameterNames();
@@ -278,7 +278,7 @@ class RegisterController {
 
     def conf = getConf()
     
-    String username = g.cookie(name: 'myCookie')
+    String username = params.email
 
 	User userInstance = User.findByUsername(username)
 	
@@ -315,7 +315,7 @@ class RegisterController {
     def conf = getConf()
     
 	String postUrl = request.contextPath + '/register/register'
-    render view: 'registration', model: [postUrl: postUrl, message: "error"]
+    render view: 'registration', model: [postUrl: postUrl, message: "Error"]
   }
 
   /** The redirect action for Ajax requests. */
