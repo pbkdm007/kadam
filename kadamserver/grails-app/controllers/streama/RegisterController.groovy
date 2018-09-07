@@ -278,6 +278,7 @@ class RegisterController {
 
     def conf = getConf()
     
+    if(params!=null && params.email!=null) {
     String username = params.email
 
 	User userInstance = User.findByUsername(username)
@@ -306,6 +307,7 @@ class RegisterController {
 	userInstance.enabled = true
 	
 	userInstance.save flush: true
+	}
 	
     render view: 'success'
   }
