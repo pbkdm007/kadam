@@ -233,7 +233,7 @@ class RegisterController {
             action1 = base_url.concat("/_payment");
         }
 
-		urlParams.put("key","gtKFFx")
+		urlParams.put("key","dKqf7Mff")
 		urlParams.put("txnid", txnid);
         urlParams.put("hash", hash);
         urlParams.put("action", action1);
