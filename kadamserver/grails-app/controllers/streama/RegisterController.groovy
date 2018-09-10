@@ -166,9 +166,9 @@ class RegisterController {
             {
         response.setContentType("text/html;charset=UTF-8");
 		String key = "";
-        String salt = "eCwWELxi";
+        String salt = "haqtx6QnvO";
         String action1 = "";
-        String base_url = "http://sandboxsecure.payu.in";
+        String base_url = "https://sandboxsecure.payu.in";
         error = 0;
         String hashString = "";
         Enumeration paramNames = request.getParameterNames();
@@ -233,7 +233,7 @@ class RegisterController {
             action1 = base_url.concat("/_payment");
         }
 
-		urlParams.put("key","gtKFFx")
+		urlParams.put("key","dKqf7Mff")
 		urlParams.put("txnid", txnid);
         urlParams.put("hash", hash);
         urlParams.put("action", action1);
