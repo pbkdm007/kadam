@@ -238,8 +238,8 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 		  </div>
           </div>
 
-          <input type="hidden" name="key" value="ITxLRk3Y" />
-          <input type="hidden" name="salt" value="fJxGAbHIKw" />
+          <input type="hidden" name="key" value="gtKFFx" />
+          <input type="hidden" name="salt" value="eCwWELxi" />
             <input type="hidden" name="hash_string" value="" />
             <input type="hidden" name="hash" />
 
