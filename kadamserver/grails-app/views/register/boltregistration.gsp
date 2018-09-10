@@ -3,17 +3,34 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.security.*" %>
 
-<%!
-public boolean empty(String s)
+<%
+
+	String merchant_key="";
+	String salt="";
+	String action1 ="";
+	String base_url="https://sandboxsecure.payu.in";
+	int error=0;
+	String hashString="";
+
+
+
+
+	Enumeration paramNames = request.getParameterNames();
+	Map<String,String> params= new HashMap<String,String>();
+    	while(paramNames.hasMoreElements())
 	{
-		if(s== null || s.trim().equals(""))
-			return true;
-		else
-			return false;
+      		String paramName = (String)paramNames.nextElement();
+
+      		String paramValue = request.getParameter(paramName);
+
+		params.put(paramName,paramValue);
 	}
-%>
-<%!
-	public String hashCal(String type,String str){
+	String txnid ="";
+	if(params.get("txnid")== null || params.get("txnid").trim().equals("")){
+		Random rand = new Random();
+		String rndm = Integer.toString(rand.nextInt())+(System.currentTimeMillis() / 1000L);
+		String type="SHA-256";
+		String str=rndm;
 		byte[] hashseq=str.getBytes();
 		StringBuffer hexString = new StringBuffer();
 		try{
@@ -21,48 +38,16 @@ public boolean empty(String s)
 		algorithm.reset();
 		algorithm.update(hashseq);
 		byte[] messageDigest = algorithm.digest();
-            
-		
 
 		for (int i=0;i<messageDigest.length;i++) {
 			String hex=Integer.toHexString(0xFF & messageDigest[i]);
 			if(hex.length()==1) hexString.append("0");
 			hexString.append(hex);
 		}
-			
+
 		}catch(NoSuchAlgorithmException nsae){ }
 		
-		return hexString.toString();
-
-
-	}
-%>
-<% 	
-	String merchant_key="";
-	String salt="";
-	String action1 ="";
-	String base_url="https://sandboxsecure.payu.in";
-	int error=0;
-	String hashString="";
-	
- 
-
-	
-	Enumeration paramNames = request.getParameterNames();
-	Map<String,String> params= new HashMap<String,String>();
-    	while(paramNames.hasMoreElements()) 
-	{
-      		String paramName = (String)paramNames.nextElement();
-      
-      		String paramValue = request.getParameter(paramName);
-
-		params.put(paramName,paramValue);
-	}
-	String txnid ="";
-	if(empty(params.get("txnid"))){
-		Random rand = new Random();
-		String rndm = Integer.toString(rand.nextInt())+(System.currentTimeMillis() / 1000L);
-		txnid=hashCal("SHA-256",rndm).substring(0,20);
+		txnid=hexString.toString().substring(0,20);
 	}
 	else
 		txnid=params.get("txnid");
@@ -71,42 +56,62 @@ public boolean empty(String s)
     params.put("udf2",udf2);
 	String hash="";
 	String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
-	if(empty(params.get("hash")) && params.size()>0)
+	if((params.get("hash")== null || params.get("hash").trim().equals("")) && params.size()>0)
 	{
-		if( empty(params.get("key"))
-			|| empty(params.get("txnid"))
-			|| empty(params.get("amount"))
-			|| empty(params.get("firstname"))
-			|| empty(params.get("email"))
-			|| empty(params.get("phone"))
-			|| empty(params.get("productinfo"))
-			|| empty(params.get("surl"))
-			|| empty(params.get("furl"))
-			|| empty(params.get("service_provider"))
+		if( (params.get("key")== null || params.get("key").trim().equals(""))
+			|| (params.get("txnid")== null || params.get("txnid").trim().equals(""))
+			|| (params.get("amount")== null || params.get("amount").trim().equals(""))
+			|| (params.get("firstname")== null || params.get("firstname").trim().equals(""))
+			|| (params.get("email")== null || params.get("email").trim().equals(""))
+			|| (params.get("phone")== null || params.get("phone").trim().equals(""))
+			|| (params.get("productinfo")== null || params.get("productinfo").trim().equals(""))
+			|| (params.get("surl")== null || params.get("surl").trim().equals(""))
+			|| (params.get("furl")== null || params.get("furl").trim().equals(""))
+			|| (params.get("service_provider")== null || params.get("service_provider").trim().equals(""))
 	)
-			
+
 			error=1;
 		else{
 			String[] hashVarSeq=hashSequence.split("\\|");
-			
+
 			for(String part : hashVarSeq)
 			{
-				hashString= (empty(params.get(part)))?hashString.concat(""):hashString.concat(params.get(part));
+				hashString=(params.get(part)== null || params.get(part).trim().equals(""))?hashString.concat(""):hashString.concat(params.get(part));
 				hashString=hashString.concat("|");
 			}
 			hashString=hashString.concat(params.get("salt"));
-			
 
-			 hash=hashCal("SHA-512",hashString);
+String type="SHA-512";
+		String str=hashString;
+
+			byte[] hashseq=str.getBytes();
+		StringBuffer hexString = new StringBuffer();
+		try{
+		MessageDigest algorithm = MessageDigest.getInstance(type);
+		algorithm.reset();
+		algorithm.update(hashseq);
+		byte[] messageDigest = algorithm.digest();
+
+		for (int i=0;i<messageDigest.length;i++) {
+			String hex=Integer.toHexString(0xFF & messageDigest[i]);
+			if(hex.length()==1) hexString.append("0");
+			hexString.append(hex);
+		}
+
+		}catch(NoSuchAlgorithmException nsae){ }
+
+		return hexString.toString();
+
+			 hash=hexString.toString();
 			action1=base_url.concat("/_payment");
 		}
 	}
-	else if(!empty(params.get("hash")))
+	else if(!(params.get("hash")== null || params.get("hash").trim().equals("")))
 	{
 		hash=params.get("hash");
 		action1=base_url.concat("/_payment");
 	}
-		
+
 
 %>
 <!doctype html>
@@ -116,7 +121,7 @@ public boolean empty(String s)
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<title>${Settings.findByName('title').value}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <!-- this meta viewport is required for BOLT //-->
@@ -165,7 +170,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
         <div class="bounce3"></div>
       </div>
     </legend>
-    
+
     <div class="${hasusernameclass}">
           <div class="form-group">
           <div class="col-sm-4">
@@ -189,7 +194,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
             </div>
           </div>
           </div>
-          
+
           <div class="${haspasswordclass}">
           <div class="form-group">
           <div class="col-sm-4">
@@ -201,7 +206,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
             </div>
           </div>
           </div>
-          
+
           <div class="form-group">
           <div class="col-sm-4">
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
@@ -210,7 +215,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
               <input type="text" name='firstname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}"/>
             </div>
           </div>
-          
+
           <div class="form-group">
           <div class="col-sm-4">
           <label class="control-label">Phone</label>
@@ -219,7 +224,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
               <input type="tel" name='phone' class="form-control" placeholder="Phone"/>
             </div>
           </div>
-          
+
           <div class="form-group">
           <div class="col-sm-4">
           <label class="control-label">Select Plan</label>
@@ -232,7 +237,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 		  </select>
 		  </div>
           </div>
-          
+
           <input type="hidden" name="key" value="gtKFFx" />
           <input type="hidden" name="salt" value="eCwWELxi" />
             <input type="hidden" name="hash_string" value="" />
@@ -240,12 +245,12 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 
             <input type="hidden" name="txnid"/>
             <input type="hidden" name="productinfo" value="1 month plan"/>
-          
+
           <input type="hidden" name="surl" value="http://www.kadam-app.in/register/show"/>
           <input type="hidden" name="furl" value="http://www.kadam-app.in/register/error"/>
           <input type="hidden" name="curl" value="http://www.kadam-app.in/register/show" />
           <input type="hidden" name="service_provider" value="payu_paisa" />
-          
+
           <span>
 
             <button onclick="launchBOLT(); return false;" class="btn btn-primary pull-right" style="background: #f48729; border-color: #f48729; opacity: 0.53; filter: Alpha(opacity=53);">{{'REGISTER.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
@@ -275,13 +280,13 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
     })
     // -->
   </script>
-  
+
   <script type="text/javascript"><!--
 $('#paymentForm').bind('keyup blur', function(){
 	$.ajax({
           url: 'index.php',
           type: 'post',
-          data: JSON.stringify({ 
+          data: JSON.stringify({
             key: $('#key').val(),
 			salt: $('#salt').val(),
 			txnid: $('#txnid').val(),
@@ -298,11 +303,11 @@ $('#paymentForm').bind('keyup blur', function(){
             if (json['error']) {
 			 $('#alertinfo').html('<i class="fa fa-info-circle"></i>'+json['error']);
             }
-			else if (json['success']) {	
+			else if (json['success']) {
 				$('#hash').val(json['success']);
             }
           }
-        }); 
+        });
 });
 //-->
 </script>
@@ -311,7 +316,7 @@ function launchBOLT()
 {
 	bolt.launch({
 	key: $('#key').val(),
-	txnid: $('#txnid').val(), 
+	txnid: $('#txnid').val(),
 	hash: $('#hash').val(),
 	amount: $('#amount').val(),
 	firstname: $('#firstname').val(),
@@ -321,9 +326,9 @@ function launchBOLT()
 	udf2: $('#udf2').val(),
 	surl : $('#surl').val(),
 	furl: $('#surl').val(),
-	mode: 'dropout'	
+	mode: 'dropout'
 },{ responseHandler: function(BOLT){
-	console.log( BOLT.response.txnStatus );		
+	console.log( BOLT.response.txnStatus );
 	if(BOLT.response.txnStatus != 'CANCEL')
 	{
 		//Salt is passd here for demo purpose only. For practical use keep salt at server side only.
@@ -341,7 +346,7 @@ function launchBOLT()
 		'<input type=\"hidden\" name=\"hash\" value=\"'+BOLT.response.hash+'\" />' +
 		'</form>';
 		var form = jQuery(fr);
-		jQuery('body').append(form);								
+		jQuery('body').append(form);
 		form.submit();
 	}
 },
