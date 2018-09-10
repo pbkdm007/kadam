@@ -238,8 +238,8 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 		  </div>
           </div>
 
-          <input type="hidden" name="key" value="gtKFFx" />
-          <input type="hidden" name="salt" value="eCwWELxi" />
+          <input type="hidden" name="key" value="ITxLRk3Y" />
+          <input type="hidden" name="salt" value="fJxGAbHIKw" />
             <input type="hidden" name="hash_string" value="" />
             <input type="hidden" name="hash" />
 
@@ -284,18 +284,18 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
   <script type="text/javascript"><!--
 $('#paymentForm').bind('keyup blur', function(){
 	$.ajax({
-          url: 'index.php',
+          url: 'boltregistration.gsp',
           type: 'post',
           data: JSON.stringify({
-            key: $('#key').val(),
-			salt: $('#salt').val(),
-			txnid: $('#txnid').val(),
-			amount: $('#amount').val(),
-		    productinfo: $('#productinfo').val(),
-            firstname: $('#firstname').val(),
-			email: $('#email').val(),
-			phone: $('#phone').val(),
-			udf2: $('#udf2').val()
+            key: $('input[name="key"]').val(),
+			salt: $('input[name="salt"]').val(),
+			txnid: $('input[name="txnid"]').val(),
+			amount: $('input[name="amount"]').val(),
+		    productinfo: $('input[name="productinfo"]').val(),
+            firstname: $('input[name="firstname"]').val(),
+			email: $('input[name="email"]').val(),
+			phone: $('input[name="phone"]').val(),
+			udf2: $('input[name="udf2"]').val()
           }),
 		  contentType: "application/json",
           dataType: 'json',
@@ -315,17 +315,17 @@ $('#paymentForm').bind('keyup blur', function(){
 function launchBOLT()
 {
 	bolt.launch({
-	key: $('#key').val(),
-	txnid: $('#txnid').val(),
-	hash: $('#hash').val(),
-	amount: $('#amount').val(),
-	firstname: $('#firstname').val(),
-	email: $('#email').val(),
-	phone: $('#phone').val(),
-	productinfo: $('#productinfo').val(),
-	udf2: $('#udf2').val(),
-	surl : $('#surl').val(),
-	furl: $('#surl').val(),
+	key: $('input[name="key"]').val(),
+	txnid: $('input[name="txnid"]').val(),
+	hash: $('input[name="hash"]').val(),
+	amount: $('input[name="amount"]').val(),
+	firstname: $('input[name="firstname"]').val(),
+	email: $('input[name="email"]').val(),
+	phone: $('input[name="phone"]').val(),
+	productinfo: $('input[name="productinfo"]').val(),
+	udf2: $('input[name="udf2"]').val(),
+	surl : $('input[name="surl"]').val(),
+	furl: $('input[name="furl"]').val(),
 	mode: 'dropout'
 },{ responseHandler: function(BOLT){
 	console.log( BOLT.response.txnStatus );
