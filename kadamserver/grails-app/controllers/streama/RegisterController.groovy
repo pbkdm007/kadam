@@ -256,7 +256,7 @@ class RegisterController {
     def conf = getConf()
 
 	String postUrl = request.contextPath + '/register/register'
-    render view: 'registration', model: [postUrl: postUrl]
+    render view: 'registrationbolt', model: [postUrl: postUrl]
     
     /** redirect(uri: '/#/register') */
   }
