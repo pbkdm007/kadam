@@ -156,7 +156,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 			  </div>
 			</g:if>
 
-        <form action="#" id='registrationForm' class='cssform form-horizontal' autocomplete='off'>
+        <form action="#" id='paymentForm' class='cssform form-horizontal' autocomplete='off'>
 	<legend>
       Register
       <div class="spinner" ng-show="loading">
@@ -264,7 +264,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
   <script type='text/javascript'>
     <!--
     (function() {
-      document.forms['registrationForm'].elements['username'].focus();
+      document.forms['paymentForm'].elements['username'].focus();
     })();
 
     angular.module('streama.translations').controller('authController', function ($translate) {
@@ -277,7 +277,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
   </script>
   
   <script type="text/javascript"><!--
-$('#registrationForm').bind('keyup blur', function(){
+$('#paymentForm').bind('keyup blur', function(){
 	$.ajax({
           url: 'index.php',
           type: 'post',
