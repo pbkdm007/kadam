@@ -243,7 +243,7 @@ class RegisterController {
     
     def pay() {
     	Map<String, String> values = hashCalMethod();
-    	render view: 'payuform', model: [tempparams: values]
+    	render view: 'boltpayuform', model: [tempparams: values]
     }
   
   /** Show the register page. */
@@ -256,7 +256,7 @@ class RegisterController {
     def conf = getConf()
 
 	String postUrl = request.contextPath + '/register/register'
-    render view: 'boltregistration', model: [postUrl: postUrl]
+    render view: 'registration', model: [postUrl: postUrl]
     
     /** redirect(uri: '/#/register') */
   }
