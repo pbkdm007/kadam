@@ -20,7 +20,7 @@ public boolean empty(String s)
 		MessageDigest algorithm = MessageDigest.getInstance(type);
 		algorithm.reset();
 		algorithm.update(hashseq);
-		byte messageDigest[] = algorithm.digest();
+		byte[] messageDigest = algorithm.digest();
             
 		
 
