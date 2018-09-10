@@ -243,7 +243,7 @@ class RegisterController {
     
     def pay() {
     	Map<String, String> values = hashCalMethod();
-    	render view: 'boltpayuform', model: [tempparams: values]
+    	render view: 'payuform', model: [tempparams: values]
     }
   
   /** Show the register page. */
