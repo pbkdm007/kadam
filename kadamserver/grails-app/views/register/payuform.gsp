@@ -21,9 +21,7 @@ function submitPayuForm() {
       <input type="hidden" name="hashString" value="${ tempparams.hashString }"/>
       <input type="hidden" name="txnid" value="${ tempparams.txnid }" />
       <input type="hidden" name="udf2" value="${ tempparams.txnid }" />
-	  <input type="hidden" name="service_provider" value="PayUPaisa" />
-	  <input type="hidden" name="vendor_id" value="5434077">
-	  <input type="hidden" name="user_credentials" value="PayUPaisa:15674909">
+	  <input type="hidden" name="service_provider" value="payu_paisa" />
       <table>
         <tr>
         </tr>

@@ -5,8 +5,8 @@
 
 <%
 
-	String merchant_key="";
-	String salt="";
+	String merchant_key="dKqf7Mff";
+	String salt="haqtx6QnvO";
 	String action1 ="";
 	String base_url="https://sandboxsecure.payu.in";
 	int error=0;
@@ -238,12 +238,11 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
 		  </div>
           </div>
 
-          <input type="hidden" name="key" value="gtKFFx" />
-          <input type="hidden" name="salt" value="eCwWELxi" />
-            <input type="hidden" name="hash_string" value="" />
-            <input type="hidden" name="hash" />
+          <input type="hidden" name="key" value="<%= merchant_key %>" />
+            <input type="hidden" name="hash_string" value="<%= hashString %>" />
+            <input type="hidden" name="hash" value="<%= hash %>"/>
 
-            <input type="hidden" name="txnid"/>
+            <input type="hidden" name="txnid" value="<%= txnid %>"/>
             <input type="hidden" name="productinfo" value="1 month plan"/>
 
           <input type="hidden" name="surl" value="http://www.kadam-app.in/register/show"/>
@@ -288,14 +287,13 @@ $('#paymentForm').bind('keyup blur', function(){
           type: 'post',
           data: JSON.stringify({
             key: $('input[name="key"]').val(),
-			salt: $('input[name="salt"]').val(),
 			txnid: $('input[name="txnid"]').val(),
 			amount: $('input[name="amount"]').val(),
 		    productinfo: $('input[name="productinfo"]').val(),
             firstname: $('input[name="firstname"]').val(),
 			email: $('input[name="email"]').val(),
 			phone: $('input[name="phone"]').val(),
-			udf2: $('input[name="udf2"]').val()
+			udf2: $('input[name="txnid"]').val()
           }),
 		  contentType: "application/json",
           dataType: 'json',
@@ -323,7 +321,7 @@ function launchBOLT()
 	email: $('input[name="email"]').val(),
 	phone: $('input[name="phone"]').val(),
 	productinfo: $('input[name="productinfo"]').val(),
-	udf2: $('input[name="udf2"]').val(),
+	udf2: $('input[name="txnid"]').val(),
 	surl : $('input[name="surl"]').val(),
 	furl: $('input[name="furl"]').val(),
 	mode: 'dropout'
