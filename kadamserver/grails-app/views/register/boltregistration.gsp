@@ -56,6 +56,7 @@
     params.put("udf2",udf2);
 	String hash="";
 	String hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+	println hash+" "+key+txnid+amount+firstname+email+phone+productinfo+surl+furl+service_provider
 	if((params.get("hash")== null || params.get("hash").trim().equals("")) && params.size()>0)
 	{
 		if( (params.get("key")== null || params.get("key").trim().equals(""))
@@ -100,10 +101,10 @@ String type="SHA-512";
 
 		}catch(NoSuchAlgorithmException nsae){ }
 
-		return hexString.toString();
-
 			 hash=hexString.toString();
 			action1=base_url.concat("/_payment");
+			
+			println hash+action1
 		}
 	}
 	else if(!(params.get("hash")== null || params.get("hash").trim().equals("")))
