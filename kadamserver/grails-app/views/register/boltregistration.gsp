@@ -68,7 +68,7 @@
 			|| (params.get("surl")== null || params.get("surl").trim().equals(""))
 			|| (params.get("furl")== null || params.get("furl").trim().equals(""))
 			|| (params.get("service_provider")== null || params.get("service_provider").trim().equals(""))
-	)
+		  )
 
 			error=1;
 		else{
@@ -288,6 +288,7 @@ $('#paymentForm').bind('keyup blur', function(){
           data: JSON.stringify({
             key: $('input[name="key"]').val(),
 			txnid: $('input[name="txnid"]').val(),
+			hash: $('input[name="hash"]').val(),
 			amount: $('input[name="amount"]').val(),
 		    productinfo: $('input[name="productinfo"]').val(),
             firstname: $('input[name="firstname"]').val(),
