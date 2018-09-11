@@ -177,7 +177,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <label class="control-label">Username</label>
         </div>
             <div class="col-sm-5">
-              <input type="email" name="username" class="form-control" placeholder="Email"/>
+              <input type="email" name="email" class="form-control" placeholder="Email"/>
               <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>
@@ -268,7 +268,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
   <script type='text/javascript'>
     <!--
     (function() {
-      document.forms['paymentForm'].elements['username'].focus();
+      document.forms['paymentForm'].elements['email'].focus();
     })();
 
     angular.module('streama.translations').controller('authController', function ($translate) {
@@ -283,7 +283,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
   <script type="text/javascript"><!--
 $('#paymentForm').bind('keyup blur', function(){
 	$.ajax({
-          url: 'boltregistration.gsp',
+          url: 'http://www.kadam-app.in/register/show',
           type: 'post',
           data: JSON.stringify({
             key: $('input[name="key"]').val(),
@@ -333,7 +333,6 @@ function launchBOLT()
 		//Salt is passd here for demo purpose only. For practical use keep salt at server side only.
 		var fr = '<form action=\"'+$('#surl').val()+'\" method=\"post\">' +
 		'<input type=\"hidden\" name=\"key\" value=\"'+BOLT.response.key+'\" />' +
-		'<input type=\"hidden\" name=\"salt\" value=\"'+$('#salt').val()+'\" />' +
 		'<input type=\"hidden\" name=\"txnid\" value=\"'+BOLT.response.txnid+'\" />' +
 		'<input type=\"hidden\" name=\"amount\" value=\"'+BOLT.response.amount+'\" />' +
 		'<input type=\"hidden\" name=\"productinfo\" value=\"'+BOLT.response.productinfo+'\" />' +
