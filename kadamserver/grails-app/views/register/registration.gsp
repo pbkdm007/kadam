@@ -120,9 +120,9 @@
 
             <input type="hidden" name="txnid"/>
           
-          <input type="hidden" name="surl" value="http://www.kadam-app.in/register/success"/>
-          <input type="hidden" name="furl" value="http://www.kadam-app.in/register/error"/>
-          <input type="hidden" name="curl" value="http://www.kadam-app.in/register/show" />
+          <input type="hidden" name="surl" value="http://www.kadam-app.in:42253/register/success"/>
+          <input type="hidden" name="furl" value="http://www.kadam-app.in:42253/register/error"/>
+          <input type="hidden" name="curl" value="http://www.kadam-app.in:42253/register/show" />
           <input type="hidden" name="service_provider" value="payu_paisa" />
           
           <span>

@@ -73,7 +73,7 @@ class DefaultDataService {
         ],
         [
             settingsKey: 'Base URL',
-            value: 'http://www.kadam-app.in',
+            value: 'http://www.kadam-app.in:42253',
             description: 'The Base-URL is used for the link in the invitation-email.',
             settingsType: 'string',
             required: true,
