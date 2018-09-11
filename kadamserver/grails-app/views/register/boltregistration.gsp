@@ -246,7 +246,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
             <input type="hidden" name="txnid" value="<%= txnid %>"/>
             <input type="hidden" name="productinfo" value="1 month plan"/>
 
-          <input type="hidden" name="surl" value="http://www.kadam-app.in/register/show"/>
+          <input type="hidden" name="surl" value="http://www.kadam-app.in/register/success"/>
           <input type="hidden" name="furl" value="http://www.kadam-app.in/register/error"/>
           <input type="hidden" name="curl" value="http://www.kadam-app.in/register/show" />
           <input type="hidden" name="service_provider" value="payu_paisa" />
