@@ -178,7 +178,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <label class="control-label">Username</label>
         </div>
             <div class="col-sm-5">
-              <input type="email" name="email" class="form-control" placeholder="Email"/>
+              <input type="email" name="email" class="form-control" placeholder="Email" value="<%= email %>"/>
               <span class="${usernamespanclass}" aria-hidden="true"></span>
             </div>
           </div>
@@ -213,7 +213,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <label class="control-label">{{'PROFIlE.FULL_NAME' | translate}}</label>
         </div>
             <div class="col-sm-5">
-              <input type="text" name='firstname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}"/>
+              <input type="text" name='firstname' class="form-control" placeholder="{{'PROFIlE.FULL_NAME' | translate}}" value="<%= firstname %>"/>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <label class="control-label">Phone</label>
         </div>
             <div class="col-sm-5">
-              <input type="tel" name='phone' class="form-control" placeholder="Phone"/>
+              <input type="tel" name='phone' class="form-control" placeholder="Phone" value="<%= phone %>"/>
             </div>
           </div>
 
@@ -231,7 +231,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <label class="control-label">Select Plan</label>
         </div>
             <div class="col-sm-5">
-          <select name="amount" class="form-control">
+          <select name="amount" class="form-control" value="<%= amount %>">
 		  <option value="100">1 month plan - 100 Rs</option>
 		  <option value="500">6 month plan - 500 Rs</option>
 		  <option value="1000">1 year plan - 1000 Rs</option>
