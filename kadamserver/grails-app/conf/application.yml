@@ -29,9 +29,9 @@ environments:
         dataSource:
             dbCreate: update
             #url: jdbc:h2:./streama;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-            url: jdbc:mysql://den1.mysql3.gear.host:3306/kadam
-            username: kadam
-            password: Cv1YVPP?~i0f
+            url: jdbc:mysql://localhost:3306/kadamapp_db
+            username: kadamapp_dbuser
+            password: kadamdbpass
             properties:
                 jmxEnabled: true
                 initialSize: 5
