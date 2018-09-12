@@ -94,6 +94,34 @@ class RegisterController {
     			passwordspanclass: passwordspanclass, password2spanclass: password2spanclass, 
     			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
             }
+            else if("0".equals(params.amount)) {
+            	User user = new User(
+                        username: params.username,
+                        password: params.password,
+                        fullName: params.firstname,
+                        phone: params.phone
+                )
+                user.validate()
+			    if (user.hasErrors()) {
+			      render status: NOT_ACCEPTABLE
+			      return
+			    }
+			    
+			    Calendar now = Calendar.getInstance()
+			    
+			    now.add(Calendar.DAY_OF_MONTH,5)
+			    
+			    Date expiryDate = now.getTime()
+	
+				user.expiryDate = expiryDate
+				user.amountPaid = params.amount
+				user.accountExpired = false
+				user.enabled = true
+			
+			    user.save flush: true
+			
+			    UserRole.removeAll(user)
+            }
             else if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
             	String message = "The selected plan is invalid"
             	String postUrl = request.contextPath + '/register/register'
@@ -120,13 +148,14 @@ class RegisterController {
 			
 			    UserRole.removeAll(user)
 			    
-			    Cookie cookie = new Cookie("myCookie",username)
+			    /**Cookie cookie = new Cookie("myCookie",username)
 				cookie.maxAge = -1
-				response.addCookie(cookie)
+				response.addCookie(cookie)*/
 			    
 			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
 			    
 			    pay()
+			    
 			    /** redirect(url: "https://www.payumoney.com/sandbox/paybypayumoney/#/898B9046B7F1201205DA2DBCC4083632")
 			     redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355") */
             }
@@ -262,16 +291,29 @@ class RegisterController {
   }
   
   def payorrenew() {
-  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
-       String message = "The selected plan is invalid"
-       String postUrl = request.contextPath + '/register/register'
-       render view: 'registration', model: [postUrl: postUrl, message: message]
-    }
-  	def username = params.username
-    Cookie cookie = new Cookie("myCookie",username)
-	cookie.maxAge = -1
-	response.addCookie(cookie)
-	pay()
+  User user = User.findByUsername(params.username)
+  	if("0".equals(params.amount) && "0.00".equals(user.amountPaid)) {
+  		
+  		String message = "You have already used free plan"
+  		String postUrl = request.contextPath + '/register/payorrenew'
+  		render view: 'payorrenew', model: [postUrl: postUrl, message: message]
+  		return
+  		
+  	} 
+  	else 
+  	{
+	  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
+	       String message = "The selected plan is invalid"
+	       String postUrl = request.contextPath + '/register/payorrenew'
+	       render view: 'payorrenew', model: [postUrl: postUrl, message: message]
+	       return
+	    }
+	  	/**def username = params.username
+	    Cookie cookie = new Cookie("myCookie",username)
+		cookie.maxAge = -1
+		response.addCookie(cookie)*/
+		pay()
+	}
   }
   
   def success() {
@@ -282,8 +324,6 @@ class RegisterController {
     String username = params.email
 
 	User userInstance = User.findByUsername(username)
-	
-	userInstance.enabled = true
 	
 	String amount = params.amount
 	

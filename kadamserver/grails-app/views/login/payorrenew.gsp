@@ -79,6 +79,7 @@
         </div>
             <div class="col-sm-5">
           <select name="amount" class="form-control">
+          <option value="0">5 days free plan - 0 Rs</option>
 		  <option value="100">1 month plan - 100 Rs</option>
 		  <option value="500">6 month plan - 500 Rs</option>
 		  <option value="1000">1 year plan - 1000 Rs</option>
