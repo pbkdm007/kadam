@@ -121,6 +121,8 @@ class RegisterController {
 			    user.save flush: true
 			
 			    UserRole.removeAll(user)
+			    
+			    render view: 'success'
             }
             else if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
             	String message = "The selected plan is invalid"
