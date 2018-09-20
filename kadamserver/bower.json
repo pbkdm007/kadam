@@ -4,7 +4,7 @@
   "authors": [
     "Kadam <pbkdm007@gmail.com>"
   ],
-  "description": "It's like Netflix, but self-hosted!",
+  "description": "It's like Netflix!",
   "license": "MIT",
   "homepage": "http://dularion.github.io/streama/",
   "ignore": [
