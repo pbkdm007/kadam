@@ -294,20 +294,25 @@ class RegisterController {
   
   def payorrenew() {
   User user = User.findByUsername(params.username)
+  String username = params.username
+  String firstname = params.firstname
+  String phone = params.phone
   	if("0".equals(params.amount) && "0.00".equals(user.amountPaid)) {
   		
-  		String message = "You have already used free plan"
+  		flash.message = "You have already used free plan"
   		String postUrl = request.contextPath + '/register/payorrenew'
-  		render view: 'payorrenew', params: params, model: [postUrl: postUrl, message: message]
+  		render view: 'payorrenew', params: params, model: [postUrl: postUrl, username: username, 
+    	firstname: firstname, phone: phone]
   		return
   		
   	} 
   	else 
   	{
 	  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
-	       String message = "The selected plan is invalid"
+	       flash.message = "The selected plan is invalid"
 	       String postUrl = request.contextPath + '/register/payorrenew'
-	       render view: 'payorrenew', params: params, model: [postUrl: postUrl, message: message]
+	       render view: 'payorrenew', params: params, model: [postUrl: postUrl, username: username, 
+    		firstname: firstname, phone: phone]
 	       return
 	    }
 	  	/**def username = params.username
