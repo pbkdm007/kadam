@@ -298,7 +298,7 @@ class RegisterController {
   		
   		String message = "You have already used free plan"
   		String postUrl = request.contextPath + '/register/payorrenew'
-  		render view: 'payorrenew', model: [postUrl: postUrl, message: message]
+  		render view: 'payorrenew', params: params, model: [postUrl: postUrl, message: message]
   		return
   		
   	} 
@@ -307,7 +307,7 @@ class RegisterController {
 	  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
 	       String message = "The selected plan is invalid"
 	       String postUrl = request.contextPath + '/register/payorrenew'
-	       render view: 'payorrenew', model: [postUrl: postUrl, message: message]
+	       render view: 'payorrenew', params: params, model: [postUrl: postUrl, message: message]
 	       return
 	    }
 	  	/**def username = params.username
