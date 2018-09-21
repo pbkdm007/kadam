@@ -297,7 +297,7 @@ class RegisterController {
   String username = params.username
   String firstname = params.firstname
   String phone = params.phone
-  	if("0".equals(params.amount) && "0.00".equals(user.amountPaid)) {
+  	if("0".equals(params.amount) && "0".equals(user.amountPaid)) {
   		
   		flash.message = "You have already used free plan"
   		String postUrl = request.contextPath + '/register/payorrenew'
