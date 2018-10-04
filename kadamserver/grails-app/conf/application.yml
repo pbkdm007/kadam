@@ -10,14 +10,14 @@ dataSource:
     pooled: true
     jmxExport: true
     #driverClassName: 'org.h2.Driver'
-    driverClassName:  'com.mysql.jdbc.Driver'
+    driverClassName:  'com.mysql.cj.jdbc.Driver'
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 environments:
     development:
         dataSource:
             dbCreate: update
-            driverClassName:  'com.mysql.jdbc.Driver'
+            driverClassName:  'com.mysql.cj.jdbc.Driver'
             url: jdbc:mysql://den1.mysql3.gear.host:3306/kadam
             username: kadam
             password: Cv1YVPP?~i0f
