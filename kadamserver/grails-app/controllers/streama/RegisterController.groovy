@@ -124,7 +124,7 @@ class RegisterController {
 			    
 			    render view: 'success'
             }
-            else if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
+            else if(!"10".equals(params.amount) && !"50".equals(params.amount) && !"100".equals(params.amount)) {
             	String message = "The selected plan is invalid"
             	String postUrl = request.contextPath + '/register/register'
     			render view: 'registration', model: [postUrl: postUrl, message: message]
@@ -225,11 +225,11 @@ class RegisterController {
         tempparams.put("udf2", txnid);
         String amount = tempparams.get("amount")
         
-        if("100".equals(amount)) {
+        if("10".equals(amount)) {
         tempparams.put("productinfo", "1 month plan")
-        } else if("500".equals(amount)) {
+        } else if("50".equals(amount)) {
         tempparams.put("productinfo", "6 month plan")
-        } else if("1000".equals(amount)) {
+        } else if("100".equals(amount)) {
         tempparams.put("productinfo", "1 year plan")
         }
         
@@ -308,7 +308,7 @@ class RegisterController {
   	} 
   	else 
   	{
-	  	if(!"100".equals(params.amount) && !"500".equals(params.amount) && !"1000".equals(params.amount)) {
+	  	if(!"10".equals(params.amount) && !"50".equals(params.amount) && !"100".equals(params.amount)) {
 	       flash.message = "The selected plan is invalid"
 	       String postUrl = request.contextPath + '/register/payorrenew'
 	       render view: 'payorrenew', params: params, model: [postUrl: postUrl, username: username, 
@@ -336,11 +336,11 @@ class RegisterController {
 	
 	Calendar now = Calendar.getInstance()
 	
-	if("100.00".equals(amount)) {
+	if("10.00".equals(amount)) {
 		now.add(Calendar.MONTH,1)
-	} else if("500.00".equals(amount)) {
+	} else if("50.00".equals(amount)) {
 		now.add(Calendar.MONTH,6)
-	} else if("1000.00".equals(amount)) {
+	} else if("100.00".equals(amount)) {
 		now.add(Calendar.MONTH,12)
 	} else {
 		userInstance.enabled = false
