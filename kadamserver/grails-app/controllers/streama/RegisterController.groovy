@@ -354,6 +354,8 @@ class RegisterController {
 	userInstance.enabled = true
 	
 	userInstance.save flush: true
+	
+	UserRole.create(userInstance, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
 	}
 	
     render view: 'success'
