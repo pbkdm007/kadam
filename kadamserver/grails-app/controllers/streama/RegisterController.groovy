@@ -148,7 +148,7 @@ class RegisterController {
 			
 			    user.save flush: true
 			
-			    UserRole.create(userInstance, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
+			    UserRole.create(user, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
 			    
 			    /**Cookie cookie = new Cookie("myCookie",username)
 				cookie.maxAge = -1
