@@ -25,6 +25,8 @@ import java.util.HashMap
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
+import grails.transaction.Transactional
+
 @Secured('permitAll')
 class RegisterController {
 
