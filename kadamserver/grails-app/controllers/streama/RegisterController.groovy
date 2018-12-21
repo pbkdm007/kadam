@@ -39,6 +39,7 @@ class RegisterController {
   
   def error
 
+  @Transactional
   def register() {
 	String username = params.username
     def isInvite = true
@@ -147,8 +148,13 @@ class RegisterController {
 			    }
 			
 			    user.save flush: true
+			    
+			    /*UserRole.removeAll(userInstance)
 			
-			    UserRole.create(user, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
+				Role role = Role.get(2)
+      			UserRole.create(userInstance, role)*/
+      			
+			    //UserRole.create(user, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
 			    
 			    /**Cookie cookie = new Cookie("myCookie",username)
 				cookie.maxAge = -1
@@ -323,6 +329,7 @@ class RegisterController {
 	}
   }
   
+  @Transactional
   def success() {
 
     def conf = getConf()
@@ -354,6 +361,11 @@ class RegisterController {
 	userInstance.enabled = true
 	
 	userInstance.save flush: true
+	
+	UserRole.removeAll(userInstance)
+			
+	Role role = Role.get(2)
+	UserRole.create(userInstance, role)
 	
 	//UserRole.create(userInstance, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
 	}
