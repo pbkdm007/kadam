@@ -119,6 +119,12 @@ class LoginController {
     firstname: firstname, phone: phone]
     
   }
+  
+  def showprivacypolicy() {
+
+    render view: 'privacypolicy'
+    
+  }
 
   /** The redirect action for Ajax requests. */
   def authAjax() {

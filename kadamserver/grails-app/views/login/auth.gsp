@@ -59,6 +59,7 @@
             <button class="btn btn-primary pull-right" style="background: #f48729; border-color: #f48729; opacity: 0.53; filter: Alpha(opacity=53);">{{'LOGIN.SUBMIT' | translate}} &nbsp; <i class="ion-chevron-right"></i></button></span>
         </form>
         <div class="form-group"><a href="https://kadam-app.blogspot.com/2018/09/what-do-you-want-to-watch.html">What Do you want to watch?</a></div>
+        <div class="form-group"><g:link controller="login" action="showprivacypolicy">Privacy Policy</g:link></div>
       </div>
     </div>
     <div class="page-container-push"></div>
