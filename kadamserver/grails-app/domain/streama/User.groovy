@@ -1,5 +1,7 @@
 package streama
 
+import org.grails.web.util.WebUtils
+
 import static java.util.UUID.randomUUID
 
 class User {
@@ -30,7 +32,7 @@ class User {
 
 	static transients = ['springSecurityService']
 
-  static hasMany = [favoriteGenres: Genre]
+  static hasMany = [favoriteGenres: Genre, profiles: Profile]
 
 	static constraints = {
 		username blank: false, unique: true
@@ -71,4 +73,15 @@ class User {
 	protected void encodePassword() {
 		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
 	}
+
+  static Profile getProfileFromRequest(){
+    def request = WebUtils.retrieveGrailsWebRequest()?.getCurrentRequest()
+    if(!request){
+      return
+    }
+    def profileId = request.getHeader("profileId")
+    def currentProfile = Profile.get(profileId)
+
+    return currentProfile
+  }
 }

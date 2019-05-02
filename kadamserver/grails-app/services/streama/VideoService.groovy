@@ -2,6 +2,7 @@ package streama
 
 import grails.transaction.Transactional
 import grails.web.servlet.mvc.GrailsParameterMap
+import org.grails.web.util.WebUtils
 
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -23,9 +24,10 @@ class VideoService {
   }
 
 
-  public static List<ViewingStatus> listContinueWatching(User currentUser) {
+  public static List<ViewingStatus> listContinueWatching(User currentUser, Profile profile) {
     List<ViewingStatus> continueWatching = ViewingStatus.withCriteria {
       eq("user", currentUser)
+      eq("profile", profile)
       video {
         isNotEmpty("files")
         ne("deleted", true)
@@ -45,12 +47,6 @@ class VideoService {
 
         if (!previousShowEntry) {
           result.add(continueWatchingItem)
-        } else {
-          def previousIsLower = (previousShowEntry.video.seasonEpisodeMerged < continueWatchingItem.video.seasonEpisodeMerged)
-          if (previousShowEntry && previousIsLower) {
-            result.removeAll { it.id == previousShowEntry.id }
-            result.add(continueWatchingItem)
-          }
         }
       } else {
         result.add(continueWatchingItem)
@@ -108,12 +104,17 @@ class VideoService {
 
 
   def listMovies(GrailsParameterMap params, Map options){
-    def max = params.int('max', 50)
-    def offset = params.int('offset', 0)
-    def sort = params.sort
-    def order = params.order
-    def genreId = params.long('genreId')
-    def genreList = params.list('genre')*.toLong()
+    Profile currentProfile = User.getProfileFromRequest()
+    Integer max = params.int('max', 50)
+    Integer offset = params.int('offset', 0)
+    String sort = params.sort
+    String order = params.order
+    Long genreId = params.long('genreId')
+    List<Long> genreList = params.list('genre')*.toLong() ?: []
+
+    if(currentProfile?.isChild){
+      genreList += Genre.findAllByNameInList(['Kids', 'Family'])*.id
+    }
 
     def movieQuery = Movie.where {
       deleted != true
@@ -145,12 +146,17 @@ class VideoService {
 
 
   def listShows(GrailsParameterMap params, Map options){
+    Profile currentProfile = User.getProfileFromRequest()
     def max = params.int('max', 50)
     def offset = params.int('offset', 0)
     def sort = params.sort
     def order = params.order
     def genreId = params.long('genreId')
-    def genreList = params.list('genre')*.toLong()
+    def genreList = params.list('genre')*.toLong() ?: []
+
+    if(currentProfile?.isChild){
+      genreList += Genre.findAllByNameInList(['Kids', 'Family'])*.id
+    }
 
     def tvShowQuery = TvShow.where{
       def tv1 = TvShow

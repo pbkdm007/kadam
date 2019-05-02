@@ -27,6 +27,14 @@ import java.security.NoSuchAlgorithmException
 
 import grails.transaction.Transactional
 
+import com.instamojo.wrapper.exception.ConnectionException
+import com.instamojo.wrapper.exception.HTTPException
+import com.instamojo.wrapper.model.PaymentOrder
+import com.instamojo.wrapper.model.PaymentOrderResponse
+import com.instamojo.wrapper.api.ApiContext
+import com.instamojo.wrapper.api.Instamojo
+import com.instamojo.wrapper.api.InstamojoImpl
+
 @Secured('permitAll')
 class RegisterController {
 
@@ -41,7 +49,7 @@ class RegisterController {
   
   def error
 
-  @Transactional
+  //@Transactional
   def register() {
 	String username = params.username
     def isInvite = true
@@ -125,6 +133,9 @@ class RegisterController {
 			
 			    UserRole.removeAll(user)
 			    
+			    Role role = Role.get(2)
+				UserRole.create(userInstance, role)
+			    
 			    render view: 'success'
             }
             else if(!"10".equals(params.amount) && !"50".equals(params.amount) && !"100".equals(params.amount)) {
@@ -164,7 +175,9 @@ class RegisterController {
 			    
 			    //response.setHeader 'Authorization' , 'D2GolFkwmvomSHkZ9GAVMQq2soPOtBixMj2E3Sb5IxI='
 			    
-			    pay()
+			    //pay()
+			    
+			    payViaInstamojo()
 			    
 			    /** redirect(url: "https://www.payumoney.com/sandbox/paybypayumoney/#/898B9046B7F1201205DA2DBCC4083632")
 			     redirect(url: "https://www.payumoney.com/paybypayumoney/#/0777B13D79F428A2793B1D81AAD66355") */
@@ -381,6 +394,44 @@ class RegisterController {
     
 	String postUrl = request.contextPath + '/register/register'
     render view: 'registration', model: [postUrl: postUrl, message: "Error"]
+  }
+  
+  def payViaInstamojo() {
+  	Map<String, String> values = hashCalMethod();
+	   /*
+	 * Get a reference to the instamojo api
+	 */
+	ApiContext context = ApiContext.create("test_2DEJcwtYxz50zmzE01VMgLTQUNdOJ6kGQfd", 
+	"test_Z5xPM1FTM4voPPYHOpnXMM7ABbHAJjDNIf3uvluKqHU2QMUb7kLMSV8bRy58kUmACUuyRmkCqMbqOIbGf3TljEeaW5jWo7fQ6u2XciPqojzSMW10DqJXbcwfpnZ", ApiContext.Mode.TEST);
+	Instamojo api = new InstamojoImpl(context);
+	
+	/*
+	 * Create a new payment order
+	 */
+	PaymentOrder order = new PaymentOrder();
+	order.setName(values.get("firstname"));
+	order.setEmail(values.get("username"));
+	order.setPhone(values.get("phone"));
+	order.setCurrency("INR");
+	order.setAmount(values.get("amount"));
+	order.setDescription("This is a test transaction.");
+	order.setRedirectUrl(values.get("surl"));
+	order.setWebhookUrl(values.get("surl"));
+	order.setTransactionId(values.get("txnid"));
+	
+	try {
+	    PaymentOrderResponse paymentOrderResponse = api.createPaymentOrder(order);
+	    System.out.println(paymentOrderResponse.getPaymentOrder().getStatus());
+	
+	} catch (HTTPException e) {
+	    System.out.println(e.getStatusCode());
+	    System.out.println(e.getMessage());
+	    System.out.println(e.getJsonPayload());
+	throw e;
+	} catch (ConnectionException e) {
+	    System.out.println(e.getMessage());
+	    throw e;
+	}
   }
 
   /** The redirect action for Ajax requests. */

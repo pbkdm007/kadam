@@ -1,10 +1,10 @@
-FROM java:8-jre
-
+FROM openjdk:8-jre-slim
+VOLUME /data
 EXPOSE 8080
-
-RUN mkdir /app
-
-ADD https://github.com/pkdm1989/kadamserver/releases/download/v1.0/root.war /app/root.war
+ENV ACTIVE_PROFILE=docker
 
 WORKDIR /app
-CMD ["java", "-Dgrails.env=prod", "-jar", "root.war" ]
+COPY docker/entrypoint.sh entrypoint.sh
+COPY build/libs/*.jar streama.jar
+
+ENTRYPOINT ["sh", "entrypoint.sh"]

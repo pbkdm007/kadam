@@ -80,7 +80,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
   [pattern:'/**/css/**',  access :['permitAll']],
   [pattern:'/**/images/**',  access :['permitAll']],
   [pattern:'/**/favicon.ico', access :['permitAll']],
-  [pattern:'/.well-known/**',  access :['permitAll']],
 
 
 
@@ -96,8 +95,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
   [pattern: '/**/css/**', filters: 'none'],
   [pattern: '/**/images/**', filters: 'none'],
   [pattern: '/**/favicon.ico', filters: 'none'],
-  [pattern: '/**', filters: 'JOINED_FILTERS'],
-  [pattern: '/.well-known/**', filters: 'none']
+  [pattern: '/**', filters: 'JOINED_FILTERS']
 ]
 
 

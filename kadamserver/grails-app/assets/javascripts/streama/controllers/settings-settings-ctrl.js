@@ -4,7 +4,8 @@ angular.module('streama').controller('settingsSettingsCtrl',
       ['$scope', 'apiService', '$sce', 'uploadService',
       function ($scope, apiService, $sce, uploadService) {
 
-  apiService.settings.list().success(function (data) {
+  apiService.settings.list().then(function (response) {
+    var data = response.data;
     $scope.settings = data;
 
     _.forEach(data, function (setting) {
@@ -15,8 +16,7 @@ angular.module('streama').controller('settingsSettingsCtrl',
 
   $scope.updateMultipleSettings = function (settings) {
     settings.invalid = false;
-    apiService.settings.updateMultiple(settings)
-      .success(function () {
+    apiService.settings.updateMultiple(settings).then(function () {
         window.location.reload();
         alertify.success('Settings saved.');
       })
@@ -31,13 +31,12 @@ angular.module('streama').controller('settingsSettingsCtrl',
     $scope.changeValue(settings);
     $scope.loading = true;
 
-    apiService.settings.validateSettings(settings)
-      .success(function (data) {
+    apiService.settings.validateSettings(settings).then(function (response) {
+        var data = response.data;
         alertify.success(data.message || 'validation successful');
         settings.valid = true;
         $scope.loading = false;
-      })
-      .error(function (data) {
+      }, function (data) {
         alertify.error(data.message);
         settings.invalid = true;
         $scope.loading = false;
@@ -59,8 +58,9 @@ angular.module('streama').controller('settingsSettingsCtrl',
 	$scope.uploadStatus = {};
 	$scope.upload = function (setting, files) {
 		//check if upload dir is set
-		apiService.settings.list().success(function (setlist) {
-			var uploadDir = _.find(setlist, {settingsKey: 'Upload Directory'});
+		apiService.settings.list().then(function (response) {
+      var data = response.data;
+			var uploadDir = _.find(data, {settingsKey: 'Upload Directory'});
 			if (uploadDir.value) {
 				//do upload
 				uploadService.doUpload($scope.uploadStatus, 'file/upload.json?isPublic=true', function (data) {
@@ -86,11 +86,10 @@ angular.module('streama').controller('settingsSettingsCtrl',
       if (assetURL.startsWith("upload:")) {
 
         var id = assetURL.split(":")[1];
-        apiService.file.getURL(id)
-          .success(function (data) {
-            setting.src = data.url
+        apiService.file.getURL(id).then(function (response) {
+            setting.src = response.data.url;
             return true;
-          })
+          });
 
       } else {
         setting.src = assetURL;
