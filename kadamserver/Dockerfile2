@@ -1,0 +1,16 @@
+FROM java:8-jre
+
+EXPOSE 8080
+
+RUN mkdir /app
+RUN mkdir /videos
+
+ADD https://github.com/pkdm1989/simpledocker/releases/download/v1.0/root.war /app/root.war
+
+RUN chmod 777 /app
+RUN chmod 777 /videos
+RUN chmod u+x /app/root.war
+
+WORKDIR /app
+
+ENTRYPOINT ["java", "-jar", "root.war" ]
