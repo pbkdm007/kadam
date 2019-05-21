@@ -106,6 +106,7 @@ class RegisterController {
     			hasusernameclass: hasusernameclass, haspasswordclass: haspasswordclass]
             }
             else if("0".equals(params.amount)) {
+            User.withTransaction {
             	User user = new User(
                         username: params.username,
                         password: params.password,
@@ -134,7 +135,8 @@ class RegisterController {
 			    UserRole.removeAll(user)
 			    
 			    Role role = Role.get(2)
-				UserRole.create(userInstance, role)
+				UserRole.create(user, role)
+				}
 			    
 			    render view: 'success'
             }
@@ -346,23 +348,93 @@ class RegisterController {
   
   @Transactional
   def success() {
+  
+  	PaymentOrder paymentOrder=null;
 
-    def conf = getConf()
+	try {
+	ApiContext context = ApiContext.create("JpCABmIADQ2VC6kMXzdENF5vfEkrZEfuVmfHN9Qe", 
+	"Iq7eB8dUoyAnLBHZ43QZoERmT1wbxJG8S56nlucP0GyUQLlMXoDKh6BUd7SBRUoJz7fJTcDIR8hPrbMgFjLFvZcjgffNLLj0qtvsAeyle8j63MuYPxF4XwNeQ6dn1DvG", ApiContext.Mode.LIVE);
+	Instamojo api = new InstamojoImpl(context);
+    paymentOrder = api.getPaymentOrder(params.id);
+    //System.out.println(paymentOrder.getId());
+    //System.out.println(paymentOrder.getStatus());
+	
+	} catch (HTTPException e) {
+	    System.out.println(e.getStatusCode());
+	    System.out.println(e.getMessage());
+	    System.out.println(e.getJsonPayload());
+	
+	} catch (ConnectionException e) {
+	    System.out.println(e.getMessage());
+	}
     
-    if(params!=null && params.email!=null) {
-    String username = params.email
+    if(paymentOrder!=null && "Credit".equals(params.payment_status)) {
+    String username = paymentOrder.email
+    
+    String amount = String.valueOf(paymentOrder.amount)
+    
+    BigDecimal stripedVal = new BigDecimal(amount).stripTrailingZeros();
+    
+    amount = stripedVal.toPlainString()
+    
+    //System.out.println(username);
+    //System.out.println(amount);
 
 	User userInstance = User.findByUsername(username)
 	
-	String amount = params.amount
-	
+	if(userInstance != null) {
 	Calendar now = Calendar.getInstance()
 	
-	if("10.00".equals(amount)) {
+	if("10".equals(amount)) {
 		now.add(Calendar.MONTH,1)
-	} else if("50.00".equals(amount)) {
+	} else if("50".equals(amount)) {
 		now.add(Calendar.MONTH,6)
-	} else if("100.00".equals(amount)) {
+	} else if("100".equals(amount)) {
+		now.add(Calendar.MONTH,12)
+	}
+	
+	Date expiryDate = now.getTime()
+	
+	userInstance.expiryDate = expiryDate
+	userInstance.amountPaid = amount
+	userInstance.accountExpired = false
+	userInstance.enabled = true
+	
+	userInstance.save flush: true
+	
+	UserRole.removeAll(userInstance)
+			
+	Role role = Role.get(2)
+	UserRole.create(userInstance, role)
+	
+	//UserRole.create(userInstance, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
+	} else {
+		redirect action: 'error'
+		return
+	}
+	}
+	
+    render view: 'success'
+  }
+  
+  @Transactional
+  def successwebhook() {
+
+    if(params!=null && params.buyer!=null && "Credit".equals(params.status)) {
+    String username = params.buyer
+    
+    String amount = params.amount
+
+	User userInstance = User.findByUsername(username)
+	
+	if(userInstance != null) {
+	Calendar now = Calendar.getInstance()
+	
+	if("10.0".equals(amount)) {
+		now.add(Calendar.MONTH,1)
+	} else if("50.0".equals(amount)) {
+		now.add(Calendar.MONTH,6)
+	} else if("100.0".equals(amount)) {
 		now.add(Calendar.MONTH,12)
 	} else {
 		userInstance.enabled = false
@@ -384,8 +456,8 @@ class RegisterController {
 	
 	//UserRole.create(userInstance, Role.findByAuthority("ROLE_CONTENT_MANAGER"))
 	}
+	}
 	
-    render view: 'success'
   }
   
   def error() {
@@ -397,30 +469,35 @@ class RegisterController {
   }
   
   def payViaInstamojo() {
-  	Map<String, String> values = hashCalMethod();
 	   /*
 	 * Get a reference to the instamojo api
 	 */
-	ApiContext context = ApiContext.create("test_2DEJcwtYxz50zmzE01VMgLTQUNdOJ6kGQfd", 
-	"test_Z5xPM1FTM4voPPYHOpnXMM7ABbHAJjDNIf3uvluKqHU2QMUb7kLMSV8bRy58kUmACUuyRmkCqMbqOIbGf3TljEeaW5jWo7fQ6u2XciPqojzSMW10DqJXbcwfpnZ", ApiContext.Mode.TEST);
+	ApiContext context = ApiContext.create("JpCABmIADQ2VC6kMXzdENF5vfEkrZEfuVmfHN9Qe", 
+	"Iq7eB8dUoyAnLBHZ43QZoERmT1wbxJG8S56nlucP0GyUQLlMXoDKh6BUd7SBRUoJz7fJTcDIR8hPrbMgFjLFvZcjgffNLLj0qtvsAeyle8j63MuYPxF4XwNeQ6dn1DvG", ApiContext.Mode.LIVE);
 	Instamojo api = new InstamojoImpl(context);
 	
 	/*
 	 * Create a new payment order
 	 */
 	PaymentOrder order = new PaymentOrder();
-	order.setName(values.get("firstname"));
-	order.setEmail(values.get("username"));
-	order.setPhone(values.get("phone"));
+	order.setName(params.firstname);
+	order.setEmail(params.username);
+	order.setPhone(params.phone);
 	order.setCurrency("INR");
-	order.setAmount(values.get("amount"));
+	order.setAmount(Double.parseDouble(params.amount));
 	order.setDescription("This is a test transaction.");
-	order.setRedirectUrl(values.get("surl"));
-	order.setWebhookUrl(values.get("surl"));
-	order.setTransactionId(values.get("txnid"));
+	order.setRedirectUrl(params.surl);
+	order.setWebhookUrl(params.surl+"webhook");
+	
+	Random rand = new Random();
+    String rndm = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
+    String txnid = hashCal("SHA-256", rndm).substring(0, 20);
+	
+	order.setTransactionId(txnid);
 	
 	try {
 	    PaymentOrderResponse paymentOrderResponse = api.createPaymentOrder(order);
+	    redirect(url: paymentOrderResponse.getPaymentOptions().getPaymentUrl());
 	    System.out.println(paymentOrderResponse.getPaymentOrder().getStatus());
 	
 	} catch (HTTPException e) {
